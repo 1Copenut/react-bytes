@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 const SearchBar = (props) => {
@@ -18,7 +19,42 @@ const SearchBar = (props) => {
     });
   };
 
-  const handleFormSubmit = (e) => e.preventDefault();
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const fetchData = async () => {
+      try {
+        setState({
+          ...state,
+          isFetching: true,
+        });
+
+        const response = await axios({
+          url: `https://api.usa.gov/crime/fbi/sapi/api/data/nibrs/${state.crimeType}/offender/national/${state.demographic}`,
+          method: 'get',
+          headers: {
+            'X-api-key': process.env.REACT_APP_DATA_KEY,
+          },
+        });
+
+        setState({
+          ...state,
+          isFetching: false,
+        });
+        console.log(response.data);
+      } catch (e) {
+        console.log(e);
+
+        setState({
+          ...state,
+          hasError: true,
+          isFetching: false,
+        });
+      }
+    };
+
+    fetchData();
+  };
 
   return (
     <section aria-labelledby="search-header">
