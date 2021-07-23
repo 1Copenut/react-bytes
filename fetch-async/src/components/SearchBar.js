@@ -4,6 +4,9 @@ const SearchBar = (props) => {
   const [state, setState] = useState({
     crimeType: 'embezzlement',
     demographic: 'count',
+    data: [],
+    hasError: false,
+    isFetching: false,
   });
 
   const handleChange = (e) => {
