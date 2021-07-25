@@ -1,63 +1,22 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import React from 'react';
 
 const SearchBar = (props) => {
-  const [state, setState] = useState({
-    locale: 'en_EN',
-    quantity: '1',
-    data: [],
-    hasError: false,
-    isFetching: false,
-  });
+  const { handleSearchBarChange, handleSearchBarSubmit, locale, quantity } =
+    props;
 
   const handleChange = (e) => {
-    const value = e.target.value;
-
-    setState({
-      ...state,
-      [e.target.name]: value,
-    });
+    handleSearchBarChange(e);
   };
 
   const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    const fetchData = async () => {
-      try {
-        setState({
-          ...state,
-          isFetching: true,
-        });
-
-        const response = await axios({
-          url: `https://fakerapi.it/api/v1/companies?_locale=${state.locale}&_quantity=${state.quantity}`,
-          method: 'get',
-        });
-
-        setState({
-          ...state,
-          isFetching: false,
-          data: response.data.data,
-        });
-      } catch (e) {
-        console.log(e);
-
-        setState({
-          ...state,
-          hasError: true,
-          isFetching: false,
-        });
-      }
-    };
-
-    fetchData();
+    handleSearchBarSubmit(e);
   };
 
   return (
     <section aria-labelledby="search-header">
-      <h2 id="search-header">
+      <h1 id="search-header">
         <strong>THE</strong> Faker API
-      </h2>
+      </h1>
       <p>Fake company data across multiple locales</p>
       <form onSubmit={handleFormSubmit}>
         <fieldset>
@@ -67,19 +26,19 @@ const SearchBar = (props) => {
             id="data-locale"
             onChange={handleChange}
             name="locale"
-            value={state.locale}
+            value={locale}
           >
             <option value="en_EN">English</option>
             <option value="fr_FR">French</option>
             <option value="es_ES">Spanish</option>
           </select>
 
-          <label htmlFor="offender-demographic">Demographic</label>
+          <label htmlFor="quantity">Number of results</label>
           <select
-            id="offender-demographic"
+            id="quantity"
             onChange={handleChange}
             name="quantity"
-            value={state.quantity}
+            value={quantity}
           >
             <option value="1">One company</option>
             <option value="2">Two companies</option>
