@@ -33,9 +33,9 @@ const SearchBar = (props) => {
             <option value="es_ES">Spanish</option>
           </select>
 
-          <label htmlFor="quantity">Number of results</label>
+          <label htmlFor="data-quantity">Number of results</label>
           <select
-            id="quantity"
+            id="data-quantity"
             onChange={handleChange}
             name="quantity"
             value={quantity}
