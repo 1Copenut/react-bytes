@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 
 const SearchBar = (props) => {
   const [state, setState] = useState({
-    crimeType: 'embezzlement',
-    demographic: 'count',
+    locale: 'en_EN',
+    quantity: '1',
     data: [],
     hasError: false,
     isFetching: false,
@@ -30,18 +30,15 @@ const SearchBar = (props) => {
         });
 
         const response = await axios({
-          url: `https://api.usa.gov/crime/fbi/sapi/api/data/nibrs/${state.crimeType}/offender/national/${state.demographic}`,
+          url: `https://fakerapi.it/api/v1/companies?_locale=${state.locale}&_quantity=${state.quantity}`,
           method: 'get',
-          headers: {
-            'X-api-key': process.env.REACT_APP_DATA_KEY,
-          },
         });
 
         setState({
           ...state,
           isFetching: false,
+          data: response.data.data,
         });
-        console.log(response.data);
       } catch (e) {
         console.log(e);
 
@@ -58,41 +55,40 @@ const SearchBar = (props) => {
 
   return (
     <section aria-labelledby="search-header">
-      <h2 id="search-header">Computer Crimes Sampling</h2>
-      <p>National NIBRS Offender Demographic Count Endpoint</p>
+      <h2 id="search-header">
+        <strong>THE</strong> Faker API
+      </h2>
+      <p>Fake company data across multiple locales</p>
       <form onSubmit={handleFormSubmit}>
         <fieldset>
           <legend>Data filters</legend>
-          <label htmlFor="crime-type">Crime category</label>
+          <label htmlFor="data-locale">Locale</label>
           <select
-            id="crime-type"
+            id="data-locale"
             onChange={handleChange}
-            name="crimeType"
-            value={state.crimeType}
+            name="locale"
+            value={state.locale}
           >
-            <option value="embezzlement">Embezzlement</option>
-            <option value="fraud-offenses">Fraud Offenses</option>
-            <option value="hacking-computer-invasion">
-              Hacking, Computer Invasion
-            </option>
-            <option value="wire-fraud">Wire Fraud</option>
+            <option value="en_EN">English</option>
+            <option value="fr_FR">French</option>
+            <option value="es_ES">Spanish</option>
           </select>
 
           <label htmlFor="offender-demographic">Demographic</label>
           <select
             id="offender-demographic"
             onChange={handleChange}
-            name="demographic"
-            value={state.demographic}
+            name="quantity"
+            value={state.quantity}
           >
-            <option value="count">Count</option>
-            <option value="age">Age</option>
-            <option value="ethnicity">Ethnicity</option>
-            <option value="race">Race</option>
-            <option value="sex">Sex</option>
+            <option value="1">One company</option>
+            <option value="2">Two companies</option>
+            <option value="3">Three companies</option>
+            <option value="4">Four companies</option>
+            <option value="5">Five companies</option>
           </select>
 
-          <input type="submit" value="Fetch FBI crime data" />
+          <input type="submit" value="Fetch company data" />
         </fieldset>
       </form>
     </section>
