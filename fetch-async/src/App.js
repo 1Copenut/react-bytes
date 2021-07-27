@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
-import { BASE_URL } from './constants';
-import SearchBar from './components/SearchBar';
+import { BASE_URL } from "./constants";
+import SearchBar from "./components/SearchBar";
+import List from "./components/List";
 
 function App() {
   const [state, setState] = useState({
-    locale: 'en_EN',
-    quantity: '1',
+    locale: "en_EN",
+    quantity: "1",
     data: [],
     hasError: false,
     isFetching: false,
@@ -35,7 +36,7 @@ function App() {
 
         const response = await axios({
           url: `${BASE_URL}?_locale=${state.locale}&_quantity=${state.quantity}`,
-          method: 'get',
+          method: "get",
         });
 
         setState({
@@ -66,6 +67,7 @@ function App() {
           locale={state.locale}
           quantity={state.quantity}
         />
+        <List companies={state.data} />
       </main>
     </div>
   );
