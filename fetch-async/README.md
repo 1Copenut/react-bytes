@@ -9,3 +9,4 @@ The app uses the ~~[FBI&rsquo;s Crime Data API](https://crime-data-explorer.fr.c
 - [FBI Crime Data API](https://crime-data-explorer.fr.cloud.gov/pages/docApi)
 - [Faker API](https://fakerapi.it/en)
 - [Handling Multiple Inputs with a Single onChange Handler in React](https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react)
+- [Consuming REST APIs In React With Fetch And Axios](https://www.smashingmagazine.com/2020/06/rest-api-react-fetch-axios/)
