@@ -1,4 +1,5 @@
 import React from "react";
+import uniqueId from "../helpers/uniqueId";
 
 const List = (props) => {
   const { companies } = props;
@@ -12,7 +13,7 @@ const List = (props) => {
       <ul>
         {companies.map((company) => {
           return (
-            <li>
+            <li key={uniqueId("companies_")}>
               <span>{company.name}</span>
               <span>{company.addresses[0].street}</span>
               <span>{company.addresses[0].city}</span>
