@@ -1,13 +1,30 @@
-import React, { useState } from "react";
+import { getDefaultNormalizer } from "@testing-library/react";
+import React, { useState, useEffect } from "react";
 import Search from "./components/Search";
 
 function App() {
   const [state, setState] = useState({
     data: [],
-    searchTerm: "",
     hasError: false,
     isLoading: false,
   });
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
+    const dataUrl = "";
+
+    fetch(dataUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        setState({
+          ...state,
+          data: data,
+        });
+      });
+  };
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -29,7 +46,6 @@ function App() {
       <Search
         handleSearchChange={handleSearchChange}
         handleSearchSubmit={handleSearchSubmit}
-        searchTerm={state.searchTerm}
       />
     </main>
   );
