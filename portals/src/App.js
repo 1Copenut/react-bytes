@@ -1,7 +1,7 @@
 function App() {
   return (
     <div className="App">
-      <button type="button">Launch Modal</button>
+      <button type="button" aria-controls="modal-dialog">Launch Modal</button>
     </div>
   );
 }

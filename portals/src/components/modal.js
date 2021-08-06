@@ -4,8 +4,8 @@ import { createPortal } from 'react-dom';
 const Modal = (props) => {
 
    return (
-      <div>
-         <p>Hello Modal.</p>
+      <div id="modal-dialog">
+         <p>Hello Modal!</p>
       </div>
    );
 };
