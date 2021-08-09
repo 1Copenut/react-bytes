@@ -1,6 +1,8 @@
-import { getDefaultNormalizer } from "@testing-library/react";
-import React, { useState, useEffect } from "react";
-import Search from "./components/Search";
+// import { getDefaultNormalizer } from "@testing-library/react";
+import React, { useState, useEffect } from 'react';
+import Search from './components/Search';
+
+require('dotenv').config();
 
 function App() {
   const [state, setState] = useState({
@@ -14,7 +16,7 @@ function App() {
   }, []);
 
   const getData = () => {
-    const dataUrl = "";
+    const dataUrl = '';
 
     fetch(dataUrl)
       .then((response) => response.json())
@@ -37,7 +39,7 @@ function App() {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted");
+    console.log('Form submitted');
   };
 
   return (
