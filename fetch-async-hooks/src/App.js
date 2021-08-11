@@ -1,11 +1,10 @@
 // import { getDefaultNormalizer } from "@testing-library/react";
 import React, { useState, useEffect } from 'react';
 import Search from './components/Search';
-
-require('dotenv').config();
+import Table from './components/Table';
 
 function App() {
-  const [state, setState] = useState({
+  const [repos, setRepos] = useState({
     data: [],
     hasError: false,
     isLoading: false,
@@ -30,7 +29,7 @@ function App() {
           throw response;
         })
         .then((data) => {
-          setState({
+          setRepos({
             data: data,
             hasError: false,
             isLoading: false,
@@ -63,6 +62,7 @@ function App() {
         handleSearchSubmit={handleSearchSubmit}
         searchTerm={inputValue}
       />
+      <Table dataArr={repos.data} />
     </main>
   );
 }
