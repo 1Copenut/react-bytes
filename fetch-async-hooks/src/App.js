@@ -9,24 +9,33 @@ function App() {
     data: [],
     hasError: false,
     isLoading: false,
+    searchTerm: '',
   });
 
   useEffect(() => {
+    const getData = () => {
+      const dataUrl = `${process.env.REACT_APP_GITHUB_BASE_URL}/users/1copenut/repos`;
+
+      fetch(dataUrl, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/vnd.github.v3+json',
+          Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setState({
+            data: data,
+            hasError: false,
+            isLoading: false,
+            searchTerm: '',
+          });
+        });
+    };
+
     getData();
   }, []);
-
-  const getData = () => {
-    const dataUrl = '';
-
-    fetch(dataUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        setState({
-          ...state,
-          data: data,
-        });
-      });
-  };
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
