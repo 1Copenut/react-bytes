@@ -1,15 +1,15 @@
 // import { getDefaultNormalizer } from "@testing-library/react";
-import React, { useState, useEffect } from 'react';
-import Search from './components/Search';
+import React, { useState, useEffect } from "react";
+import Search from "./components/Search";
 
-require('dotenv').config();
+require("dotenv").config();
 
 function App() {
   const [state, setState] = useState({
     data: [],
     hasError: false,
     isLoading: false,
-    searchTerm: '',
+    searchTerm: "",
   });
 
   useEffect(() => {
@@ -17,20 +17,28 @@ function App() {
       const dataUrl = `${process.env.REACT_APP_GITHUB_BASE_URL}/users/1copenut/repos`;
 
       fetch(dataUrl, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          Accept: 'application/vnd.github.v3+json',
+          Accept: "application/vnd.github.v3+json",
           Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
         },
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw response;
+        })
         .then((data) => {
           setState({
             data: data,
             hasError: false,
             isLoading: false,
-            searchTerm: '',
+            searchTerm: "",
           });
+        })
+        .catch((error) => {
+          console.error(`Error fetching data: ${error}`);
         });
     };
 
@@ -48,7 +56,7 @@ function App() {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted');
+    console.log("Form submitted");
   };
 
   return (
