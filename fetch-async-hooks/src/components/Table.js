@@ -1,20 +1,20 @@
 import React from 'react';
+import '../styles/table.css';
 
 const Table = (props) => {
   const { dataArr } = props;
 
   const tableRow = dataArr.map((row) => (
     <tr>
-      <th scope="row">{row.name}</th>
+      <th scope="row">
+        <a href={row.git_url}>{row.name}</a>
+      </th>
       <td>
         {row.description === null
           ? 'No description provided :('
           : row.description}
       </td>
-      <td>
-        <a href={row.git_url}>View repository</a>
-      </td>
-      <td>{row.watchers}</td>
+      <td className="table-row--centered">{row.watchers}</td>
     </tr>
   ));
 
@@ -24,8 +24,9 @@ const Table = (props) => {
         <tr>
           <th scope="col">Repo name</th>
           <th scope="col">Description</th>
-          <th scope="col">Direct link</th>
-          <th scope="col">Watchers</th>
+          <th scope="col" className="table-row--centered">
+            Watchers
+          </th>
         </tr>
       </thead>
       <tbody>{tableRow}</tbody>

@@ -1,0 +1,34 @@
+table {
+  border-collapse: collapse;
+  margin: 2rem;
+}
+
+thead {
+  border-bottom: 3px solid #333;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 1.125rem 0.5rem 0.875rem;
+}
+
+th {
+  padding-left: 1.5rem;
+}
+
+td {
+  padding-left: 0.5rem;
+}
+
+th.table-row--centered,
+td.table-row--centered {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+}
+
+tbody th,
+tbody td {
+  border-bottom: 1px solid #ccc;
+}
