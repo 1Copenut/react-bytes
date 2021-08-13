@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-import Text from "./components/Text";
+import ThemeContext from "./context/ThemeContext";
 
 const App = (props) => {
-  const [theme, setTheme] = useState("palevioletred");
-
-  const handleThemeClick = (e) => {
-    setTheme(theme === "palevioletred" ? "tomato" : "palevioletred");
-  };
+  const theme = "light";
 
   return (
-    <div className="App">
-      <Text theme={theme} />
-      <button onClick={handleThemeClick}>Toggle theme</button>
-    </div>
+    <ThemeContext.Provider value={theme}>
+      <div></div>
+    </ThemeContext.Provider>
   );
 };
 
