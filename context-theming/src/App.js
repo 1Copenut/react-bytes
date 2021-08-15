@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import ThemeContext from "./context/ThemeContext";
+import React, { useState } from 'react';
+import Header from './components/Header';
+import Main from './components/Main';
+import ThemeContext from './context/ThemeContext';
 
 const App = (props) => {
-  const theme = "light";
-
+  const themeHook = useState('light');
   return (
-    <ThemeContext.Provider value={theme}>
-      <div></div>
+    <ThemeContext.Provider value={themeHook}>
+      <div>
+        <Header />
+        <Main />
+      </div>
     </ThemeContext.Provider>
   );
 };
