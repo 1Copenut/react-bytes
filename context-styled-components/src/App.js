@@ -2,15 +2,19 @@ import React from 'react';
 import ContentContainer from './components/ContentContainer';
 import Title from './components/Title';
 import TopBar from './components/TopBar';
+import Theme from './Theme';
+import { ThemeStore } from './contexts/ThemeStore';
 
 const App = () => {
   return (
-    <>
-      <TopBar />
-      <ContentContainer>
-        <Title>Theme Switching with Styled Components</Title>
-      </ContentContainer>
-    </>
+    <ThemeStore>
+      <Theme>
+        <TopBar />
+        <ContentContainer>
+          <Title>Theme Switching with Styled Components</Title>
+        </ContentContainer>
+      </Theme>
+    </ThemeStore>
   );
 };
 
