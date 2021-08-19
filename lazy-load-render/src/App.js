@@ -1,11 +1,22 @@
-import Card from './components/card/Card';
+import { Suspense, lazy } from 'react';
 import records from './data/records';
 
 const App = () => {
-  const data = records[0];
+  const Card = lazy(() => import('./components/card/Card'));
+  const recordsList = records.map((record) => <Card data={record} />);
+
   return (
     <div className="App">
-      <Card data={data} />
+      <main>
+        <h1>Island Albums</h1>
+        <p>
+          If you had ten albums&mdash;and ten albums only&mdash;to take with you
+          to an island, which ones would they be?
+        </p>
+        <Suspense fallback={<p>Loading your island albums...</p>}>
+          <ol>{recordsList}</ol>
+        </Suspense>
+      </main>
     </div>
   );
 };

@@ -1,10 +1,23 @@
 import React from 'react';
 
-const Card = ({ data }) => {
+const Card = (props) => {
+  const { album, band, releaseDate, releaseDatetime, members } = props.data;
+  const bandMembers = members.map((member) => (
+    <>
+      <dd>{member.name}</dd>
+      <dt>{member.instrument}</dt>
+    </>
+  ));
+
   return (
-    <div>
-      <h2>{data.album}</h2>
-    </div>
+    <li>
+      <div>
+        <h2>{album}</h2>
+        <p>{band}</p>
+        <time dateTime={releaseDatetime}>Release date: {releaseDate}</time>
+        <dl>{bandMembers}</dl>
+      </div>
+    </li>
   );
 };
 

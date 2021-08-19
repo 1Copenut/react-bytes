@@ -1,28 +1,53 @@
 const records = [
   {
+    album: 'The Downward Spiral',
+    band: 'Nine Inch Nails',
+    releaseDate: 'March 8, 1994',
+    releaseDatetime: '1994-03-08',
+    members: [
+      {
+        name: 'Trent Reznor',
+        instrument: 'Lead vocals, guitar, piano, drums',
+      },
+      {
+        name: 'Robin Finck',
+        instrument: 'Guitar, backing vocals',
+      },
+      {
+        name: 'Chris Vrenna',
+        instrument: 'Drums',
+      },
+      {
+        name: 'James Woolley',
+        instrument: 'Keyboard, backing vocals',
+      },
+    ],
+  },
+  {
     album: 'Appetite for Destruction',
     band: "Guns 'n Roses",
-    releaseDate: 1987,
+    releaseDate: 'July 21, 1987',
+    releaseDatetime: '1987-07-21',
     members: [
       {
         name: 'Axl Rose',
-        instrument: 'lead vocals',
+        instrument: 'Lead vocals',
       },
       {
         name: 'Slash',
-        instrument: 'lead guitar',
+        instrument: 'Lead guitar',
       },
       {
         name: 'Izzy Stradlin',
-        instrument: 'rhythm guitar, backing vocals',
+        instrument: 'Rhythm guitar, backing vocals',
       },
       {
         name: 'Duff "Rose" McKagan',
-        instrument: 'bass, backing vocals',
+        instrument: 'Bass, backing vocals',
       },
       {
         name: 'Steven Adler',
-        instrument: 'drums',
+        instrument: 'Drums',
       },
     ],
   },
