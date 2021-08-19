@@ -1,11 +1,11 @@
 import Card from './components/card/Card';
+import records from './data/records';
 
 const App = () => {
+  const data = records[0];
   return (
     <div className="App">
-      <Card />
-      <Card title="Living the Dream" />
-      <Card title="The Sum of All Things" />
+      <Card data={data} />
     </div>
   );
 };

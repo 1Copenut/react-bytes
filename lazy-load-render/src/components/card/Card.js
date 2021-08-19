@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Card = ({ title = 'Self-titled' }) => {
+const Card = ({ data }) => {
   return (
     <div>
-      <h2>{title}</h2>
+      <h2>{data.album}</h2>
     </div>
   );
 };

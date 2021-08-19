@@ -1,6 +1,6 @@
 const records = [
   {
-    record: 'Appetite for Destruction',
+    album: 'Appetite for Destruction',
     band: "Guns 'n Roses",
     releaseDate: 1987,
     members: [
