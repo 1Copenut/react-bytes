@@ -1,13 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import './app.css';
+import MyModal from './components/myModal/MyModal';
+
+// const MyModal = lazy(() => import('./components/myModal/MyModal'));
 
 const App = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [modalIsVisible, setModalVisible] = useState(false);
   const buttonRef = useRef(null);
 
   const intersectionCallback = (entries) => {
     const [entry] = entries;
     setIsVisible(entry.isIntersecting);
+  };
+
+  const handleModalOpen = (e) => {
+    e.preventDefault();
+    setModalVisible(true);
   };
 
   useEffect(() => {
@@ -111,9 +120,10 @@ const App = () => {
         watches silently nobody is looking quick do your web search manager
         caught you and you are fured. Quick sync prethink.
       </p>
-      <button ref={buttonRef} type="button">
+      <button ref={buttonRef} type="button" onClick={handleModalOpen}>
         This is the obvservable
       </button>
+      <MyModal modalIsOpen={modalIsVisible} />
     </main>
   );
 };
