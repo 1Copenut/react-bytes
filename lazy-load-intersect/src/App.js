@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from "react";
-import "./app.css";
+import { useEffect, useRef, useState } from 'react';
+import './app.css';
 
 const App = () => {
   const [isVisible, setIsVisible] = useState(false);
   const buttonRef = useRef(null);
-  const current = buttonRef.current;
 
   const intersectionCallback = (entries) => {
     const [entry] = entries;
@@ -12,9 +11,10 @@ const App = () => {
   };
 
   useEffect(() => {
+    const current = buttonRef.current;
     const intersectionOptions = {
-      root: document.getElementById("#main"),
-      rootMargin: "0px",
+      root: document.getElementById('#main'),
+      rootMargin: '0px',
       threshold: 0.25,
     };
     const observer = new IntersectionObserver(
@@ -31,7 +31,7 @@ const App = () => {
         observer.disconnect();
       }
     };
-  }, [buttonRef, current]);
+  }, [buttonRef]);
 
   return (
     <main className="app" id="main">
