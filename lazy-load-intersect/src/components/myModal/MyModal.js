@@ -2,16 +2,22 @@ import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
 
-const MyModal = ({ modalIsOpen, closeModal, subtitle }) => {
+const MyModal = ({
+  ariaLabel,
+  modalIsOpen,
+  closeModal,
+  modalTitle,
+  children,
+}) => {
   return (
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
-      contentLabel="Example Modal"
+      contentLabel={ariaLabel}
     >
-      <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+      <h2>{modalTitle}</h2>
       <button onClick={closeModal}>close</button>
-      <div>I am a modal</div>
+      {children}
     </Modal>
   );
 };
