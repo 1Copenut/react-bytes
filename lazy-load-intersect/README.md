@@ -1,70 +1,17 @@
-# Getting Started with Create React App
+# Lazy Load Intersect
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app will be built to test out React.Suspense and React.lazy for code splitting. It builds off the previous work in my [lazy-load-render](https://github.com/1Copenut/react-bytes/tree/main/lazy-load-render) and [lazy-load-click](https://github.com/1Copenut/react-bytes/tree/main/lazy-load-click) apps. This iteration uses the Intersection Observer API to load a modal dialog when a toggle button is in the user's viewport.
 
-## Available Scripts
+Big thanks to [Alex Sexton](https://twitter.com/SlexAxton) for his article [Deploying JavaScript Applications](https://alexsexton.com/blog/2013/03/deploying-javascript-applications/) circa 2013 for the original inspiration. I read the article when it was new, and saw a lot of potential in loading JavaScript based on user behavior. Saved bytes then, saves bytes now.
 
-In the project directory, you can run:
+## The details
 
-### `npm start`
+This app deliberately creates a stream of business ipsum nonsense to ensure the `<main>` is longer than a typical viewport. Open your favorite browser dev tools, and select JavaScript under the Network tab. Scroll down, down, down some more, until the "This is the observable" button is in your viewport. At that point, you should see two new JavaScript files load asynchronously. These files are the modal dialog and a React Portal being [created by React Modal](https://github.com/reactjs/react-modal).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+As an aside, I <strong>highly</strong> recommend React Modal for an accessible modal dialog solution. It adds the modal outside your document root, does a good job of focus management, and includes the right ARIA hooks to identify itself to assistive technology.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Resources
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Deploying JavaScript Applications](https://alexsexton.com/blog/2013/03/deploying-javascript-applications/)
+- [MDN: Intersection Observer API](zilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+- [Intersection Observer using React](https://dev.to/producthackers/intersection-observer-using-react-49ko) -[GitHub: React Modal](https://github.com/reactjs/react-modal)
