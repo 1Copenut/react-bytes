@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './errorBoundary.css';
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class ErrorBoundary extends Component {
       // You can render any custom fallback UI
       return (
         <div className="cd-message--four-oh-four">
-          <h1>Oh noes!</h1>
+          <h1>Oh no!</h1>
           <p>Something went dreadfully wrong!</p>
         </div>
       );

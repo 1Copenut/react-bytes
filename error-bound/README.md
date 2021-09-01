@@ -11,3 +11,4 @@ I've created an `ErrorBound` class-based component that can be triggered by togg
 - [React API: Error Boundaries](https://reactjs.org/docs/error-boundaries.html)
 - [2 Minutes to Learn React 16's componentDidCatch Lifecycle Method](https://medium.com/@sgroff04/2-minutes-to-learn-react-16s-componentdidcatch-lifecycle-method-d1a69a1f753)
 - [Use react-error-boundary to handle errors in React](https://kentcdodds.com/blog/use-react-error-boundary-to-handle-errors-in-react)
+- [How to test production build of React apps locally?](https://www.linkedin.com/pulse/how-test-production-build-react-js-app-locally-vinay-sharma-he-him-)

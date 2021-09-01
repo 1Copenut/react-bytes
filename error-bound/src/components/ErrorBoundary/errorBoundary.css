@@ -1,0 +1,17 @@
+.cd-message--four-oh-four {
+  background: tomato;
+  padding: 2rem;
+}
+
+.cd-message--four-oh-four h1,
+.cd-message--four-oh-four p {
+  margin: 0;
+}
+
+.cd-message--four-oh-four h1 {
+  font-size: 6em;
+}
+
+.cd-message--four-oh-four p {
+  padding-left: 6px;
+}
