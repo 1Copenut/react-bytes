@@ -15,7 +15,8 @@ class ErrorBoundary extends Component {
   componentDidCatch(error, errorInfo) {
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, errorInfo);
-    console.log(error);
+    console.log(`[ERROR]: ${error}`);
+    console.log(errorInfo);
   }
 
   render() {
@@ -25,6 +26,7 @@ class ErrorBoundary extends Component {
         <div className="cd-message--four-oh-four">
           <h1>Oh no!</h1>
           <p>Something went dreadfully wrong!</p>
+          <p>Please check your dev tools console for important information.</p>
         </div>
       );
     }
