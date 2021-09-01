@@ -6,6 +6,16 @@ This app will be built to test out React's [Error Boundaries](https://reactjs.or
 
 I've created an `ErrorBound` class-based component that can be triggered by toggling the `hasError` state to true using the React dev tools. I'm working on a way to demonstrate it in a production setting. Check the resources below for more information.
 
+## Make it run!
+
+1. Download the react-bytes apps
+1. `$ cd /error-bound`
+1. `$ npm install`
+1. `$ npm run build`
+1. `$ cd build`
+1. `$ npx http-server --push-state`
+1. View app on `http://127.0.0.1:8080`. You should see the tomato banner with "Oh no!"
+
 ## Resources
 
 - [React API: Error Boundaries](https://reactjs.org/docs/error-boundaries.html)

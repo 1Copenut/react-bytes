@@ -1,5 +1,7 @@
+/* eslint-disable no-undef */
+
 const Button = ({ buttonText }) => {
-  return <button>{buttonText}</button>;
+  return <button aria-label={returnsNothingProp}>{buttonText}</button>;
 };
 
 export default Button;
