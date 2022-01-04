@@ -1,6 +1,6 @@
 # Context Theming
 
-This app will explore the use of React Context for building a light and dark theme toggle. It will eventually use [styled-componentshttps://styled-components.com/]() for individual component theme controls.
+This app will explore the use of React Context for building a light and dark theme toggle. It will eventually use [styled-components](https://styled-components.com/) for individual component theme controls.
 
 ## Resources
 
