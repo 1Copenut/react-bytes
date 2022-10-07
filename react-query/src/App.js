@@ -1,7 +1,9 @@
 import React from "react";
-import Pagination from "./components/pagination/Pagination";
+import Pagination from "./components/Pagination/Pagination";
+import FetchImages from "./data/FetchImages/FetchImages";
 
 const App = () => {
+  FetchImages();
   return (
     <>
       <header>
