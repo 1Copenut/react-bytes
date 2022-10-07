@@ -1,4 +1,5 @@
 import React from "react";
+import Pagination from "./components/pagination/Pagination";
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       </header>
       <main>
         <div>This will be the main content area. Plain, I know.</div>
+        <Pagination />
       </main>
     </>
   );
