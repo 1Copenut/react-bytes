@@ -1,16 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Pagination from "./components/Pagination/Pagination";
-import FetchImages from "./data/FetchImages/FetchImages";
+import Posts from "./components/Posts/Posts";
 
 const App = () => {
-  FetchImages();
+  const [posts, setPosts] = useState();
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios({
+          url: "https://jsonplaceholder.typicode.com/posts",
+          method: "get",
+        });
+
+        setPosts(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
     <>
       <header>
         <h1>React Query API</h1>
       </header>
       <main>
-        <div>This will be the main content area. Plain, I know.</div>
+        <Posts posts={posts} />
         <Pagination />
       </main>
     </>
