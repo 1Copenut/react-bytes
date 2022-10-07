@@ -5,6 +5,7 @@ import Posts from "./components/Posts/Posts";
 
 const App = () => {
   const [posts, setPosts] = useState();
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -23,14 +24,19 @@ const App = () => {
     fetchPosts();
   }, []);
 
+  const handlePageNumber = (pageNumber) => setPageNumber(pageNumber);
+
   return (
     <>
       <header>
         <h1>React Query API</h1>
       </header>
       <main>
-        <Posts posts={posts} />
-        <Pagination />
+        <Posts pageNumber={pageNumber} posts={posts} />
+        <Pagination
+          handlePageNumber={handlePageNumber}
+          pageNumber={pageNumber}
+        />
       </main>
     </>
   );

@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Pagination = (props) => {
-  const [page, setPage] = useState(1);
+  const { handlePageNumber, pageNumber } = props;
+
+  const decreasePageNumber = () => {
+    handlePageNumber(pageNumber - 1);
+  };
+
+  const increasePageNumber = () => {
+    handlePageNumber(pageNumber + 1);
+  };
 
   return (
     <nav className="cd-nav__pagination">
-      <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+      <button onClick={decreasePageNumber} disabled={pageNumber === 1}>
         Previous
       </button>
-      <button onClick={() => setPage(page + 1)}>Next</button>
+      <button onClick={increasePageNumber}>Next</button>
     </nav>
   );
 };

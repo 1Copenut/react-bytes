@@ -1,7 +1,7 @@
 import React from "react";
 
 const Posts = (props) => {
-  const { posts } = props;
+  const { pageNumber, posts } = props;
 
   if (!posts) {
     return <div>Loading...</div>;
