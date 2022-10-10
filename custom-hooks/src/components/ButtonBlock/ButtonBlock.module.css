@@ -1,7 +1,7 @@
 .container {
   border: 1px solid tomato;
-  max-width: 65ch;
-  margin-inline: auto;
+  margin-bottom: 1.5rem;
+  max-width: auto;
   padding: 1rem;
 }
 
