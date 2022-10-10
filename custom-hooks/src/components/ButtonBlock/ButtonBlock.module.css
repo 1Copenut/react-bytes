@@ -1,0 +1,15 @@
+.container {
+  border: 1px solid tomato;
+  margin-bottom: 1.5rem;
+  max-width: auto;
+  padding: 1rem;
+}
+
+.toggleButton {
+  margin-right: 1rem;
+}
+
+.toggleStatus {
+  font-weight: 700;
+  text-transform: capitalize;
+}
