@@ -1,6 +1,6 @@
 import React from "react";
 
-const Modal = ({ isShown }) => {
+const Modal = ({ isShown = true }) => {
   return (
     <>
       {isShown && (

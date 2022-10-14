@@ -1,9 +1,14 @@
 import React from "react";
 
-const Controls = () => {
+const Controls = ({ handleIsShown }) => {
+  const handleClick = (e) => {
+    e.preventDefault();
+    handleIsShown();
+  };
+
   return (
     <div className="cd-container">
-      <button type="button" aria-controls="modal-dialog">
+      <button onClick={handleClick} type="button" aria-controls="modal-dialog">
         Launch Modal
       </button>
     </div>
