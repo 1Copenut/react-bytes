@@ -1,6 +1,6 @@
 import React from "react";
 
-const Controls = ({ handleIsShown }) => {
+const Controls = ({ handleIsShown, buttonRef }) => {
   const handleClick = (e) => {
     e.preventDefault();
     handleIsShown();
@@ -12,6 +12,7 @@ const Controls = ({ handleIsShown }) => {
         aria-label="Learn more about Ubuntu"
         className="cd-button--modal"
         onClick={handleClick}
+        ref={buttonRef}
         type="button"
       >
         Learn more

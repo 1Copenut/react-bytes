@@ -1,26 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Controls from "./components/Controls";
 import Portal from "./components/Portal";
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
 
+  const buttonRef = useRef(null);
+  const modalRef = useRef(null);
+
   const handleIsShown = () => {
     setShowModal(!showModal);
   };
 
-  const passedProps = {
-    isShown: showModal,
+  const passedModalProps = {
     ariaLabel: "Some label I have not considered",
-    ariaControls: undefined,
+    closeModal: handleIsShown,
+    isShown: showModal,
+    modalRef: modalRef,
   };
 
   return (
     <>
       <main>
-        <Controls handleIsShown={handleIsShown} />
+        <Controls buttonRef={buttonRef} handleIsShown={handleIsShown} />
       </main>
-      <Portal {...passedProps} />
+      <Portal {...passedModalProps} />
     </>
   );
 };
