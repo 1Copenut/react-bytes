@@ -1,6 +1,6 @@
 import React from "react";
 import { createPortal } from "react-dom";
-import Modal from "./Modal.js";
+import Modal from "../Modal/Modal.js";
 
 const Portal = (props) => {
   const { ...restProps } = props;

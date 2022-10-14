@@ -1,0 +1,9 @@
+main {
+  margin-inline: auto;
+  max-width: 72ch;
+  padding: 1rem 5vw;
+}
+
+p {
+  line-height: 1.5;
+}
