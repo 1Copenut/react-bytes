@@ -1,0 +1,25 @@
+.cd_modal__container {
+  background-color: #eaeaea;
+  left: calc(50% - 30ch);
+  padding: 1rem 3rem 3rem;
+  position: fixed;
+  top: 120px;
+  width: 60ch;
+  z-index: 2;
+}
+
+.cd_modal__closeButton {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.cd_modal__smoke {
+  background-color: #000;
+  bottom: 0;
+  left: 0;
+  opacity: 0.625;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
