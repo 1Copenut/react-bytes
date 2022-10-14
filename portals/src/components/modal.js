@@ -1,20 +1,15 @@
-import React from 'react';
-import { createPortal } from 'react-dom';
+import React from "react";
 
-const Modal = (props) => {
-
-   return (
-      <div id="modal-dialog">
-         <p>Hello Modal!</p>
-      </div>
-   );
-};
-  
-const Portal = (props) => {
-   const container = document.querySelector('#modal');
-
-   return createPortal(<Modal/>, container);
+const Modal = ({ isShown }) => {
+  return (
+    <>
+      {isShown && (
+        <div id="modal-dialog">
+          <p>Hello Modal!</p>
+        </div>
+      )}
+    </>
+  );
 };
 
-export default Portal;
-  
+export default Modal;

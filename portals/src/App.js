@@ -1,9 +1,16 @@
-function App() {
+import React from "react";
+import Controls from "./components/Controls";
+import Portal from "./components/Portal";
+
+const App = () => {
   return (
-    <div className="App">
-      <button type="button" aria-controls="modal-dialog">Launch Modal</button>
-    </div>
+    <>
+      <main>
+        <Controls />
+      </main>
+      <Portal />
+    </>
   );
-}
+};
 
 export default App;
