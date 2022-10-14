@@ -5,4 +5,5 @@ This app will explore building a feature-complete (er, mostly) modal dialog that
 ## Resources
 
 - [React Portal](https://reactjs.org/docs/portals.html)
+- [react-focus-on](https://github.com/theKashey/react-focus-on)
 - [Absolute, Relative, Fixed Positioning: How Do They Differ?](https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/)
