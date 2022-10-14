@@ -3,10 +3,16 @@ import Controls from "./components/Controls";
 import Portal from "./components/Portal";
 
 const App = () => {
-  const [isShown, setShown] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleIsShown = () => {
-    setShown(!isShown);
+    setShowModal(!showModal);
+  };
+
+  const passedProps = {
+    isShown: showModal,
+    ariaLabel: "Some label I have not considered",
+    ariaControls: undefined,
   };
 
   return (
@@ -14,7 +20,7 @@ const App = () => {
       <main>
         <Controls handleIsShown={handleIsShown} />
       </main>
-      <Portal />
+      <Portal {...passedProps} />
     </>
   );
 };

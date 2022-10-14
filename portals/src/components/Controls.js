@@ -8,8 +8,13 @@ const Controls = ({ handleIsShown }) => {
 
   return (
     <div className="cd-container">
-      <button onClick={handleClick} type="button" aria-controls="modal-dialog">
-        Launch Modal
+      <button
+        aria-label="Learn more about Ubuntu"
+        className="cd-button--modal"
+        onClick={handleClick}
+        type="button"
+      >
+        Learn more
       </button>
     </div>
   );
