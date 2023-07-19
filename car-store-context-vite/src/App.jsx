@@ -4,9 +4,9 @@ import "./App.css";
 
 const App = () => {
   const cars = {
-    car001: { name: "Subaru WRX", trim: "STI", price: "$43,395" },
-    car002: { name: "Toyta Camry", trim: "TRD", price: "35,142" },
-    car003: { name: "Ford Mustang", trim: "GT", price: "$49,085" },
+    car001: { name: "Subaru WRX", trim: "STI", price: 100 },
+    car002: { name: "Toyta Camry", trim: "TRD", price: 200 },
+    car003: { name: "Ford Mustang", trim: "GT", price: 300 },
   };
 
   const [carsState, setCarsState] = useState(cars);
