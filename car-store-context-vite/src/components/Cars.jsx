@@ -1,25 +1,27 @@
 import Car from "./Car";
+import CarsContext from "../context/CarsContext";
 
-const Cars = (props) => {
-  const { cars, incrementCarPrice, decrementCarPrice } = props;
-  const carIds = Object.keys(cars);
-
-  return (
-    <ul>
-      {carIds.map((carId) => {
-        return (
-          <Car
-            key={carId}
-            name={cars[carId].name}
-            price={cars[carId].price}
-            trim={cars[carId].trim}
-            incrementCarPrice={() => incrementCarPrice(carId)}
-            decrementCarPrice={() => decrementCarPrice(carId)}
-          />
-        );
-      })}
-    </ul>
-  );
-};
+const Cars = () => (
+  <CarsContext.Consumer>
+    {(context) => (
+      <div>
+        <h2>Cars:</h2>
+        <ul>
+          {Object.keys(context.cars).map((carId) => (
+            <li key={carId}>
+              <Car
+                id={carId}
+                name={context.cars[carId].name}
+                price={context.cars[carId].price}
+                incrementCarPrice={() => context.incrementCarPrice(carId)}
+                decrementCarPrice={() => context.decrementCarPrice(carId)}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </CarsContext.Consumer>
+);
 
 export default Cars;
