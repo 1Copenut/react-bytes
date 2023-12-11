@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DropdownTrigger from "./DropdownTrigger";
 
 interface DropdownItem {
   icon?: string;
@@ -16,15 +17,10 @@ const Dropdown = ({ items }: DropdownProps) => {
 
   return (
     <div className="cd-component__dropdown">
-      <div
-        className="cd-component__dropdown-trigger"
-        tabIndex={0}
+      <DropdownTrigger
         onClick={() => setIsOpen(!isOpen)}
-      >
-        <span className="cd-component__dropdown-selection">
-          {selectedItem ? selectedItem.text : "Select an item..."}
-        </span>
-      </div>
+        text={selectedItem ? selectedItem.text : "Select an item..."}
+      />
 
       {isOpen && (
         <div className="cd-component__dropdown-menu">
