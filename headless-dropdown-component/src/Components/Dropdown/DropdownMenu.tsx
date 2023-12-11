@@ -11,9 +11,11 @@ type DropdownProps = {
 const DropdownMenu = ({
   dropdownItems,
   onDropdownItemClick,
+  selectedItemIndex,
 }: {
   dropdownItems: DropdownItem[];
   onDropdownItemClick: (dropdownItem: DropdownItem) => void;
+  selectedItemIndex: number;
 }) => {
   return (
     <div className="cd-component__dropdown-menu">
@@ -21,7 +23,11 @@ const DropdownMenu = ({
         <div
           key={index}
           onClick={() => onDropdownItemClick(dropdownItem)}
-          className="cd-component__dropdown-item"
+          className={
+            index === selectedItemIndex
+              ? "cd-component__dropdown-item js__dropdown-item--selected"
+              : "cd-component__dropdown-item"
+          }
         >
           <div className="cd-component__dropdown-item--details">
             {/* TODO: Add image */}

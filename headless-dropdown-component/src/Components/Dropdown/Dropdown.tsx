@@ -63,6 +63,7 @@ const Dropdown = ({ dropdownItems }: DropdownProps) => {
         <DropdownMenu
           dropdownItems={dropdownItems}
           onDropdownItemClick={handleDropdownItemClick}
+          selectedItemIndex={selectedIndex}
         />
       )}
     </div>
