@@ -1,9 +1,20 @@
 import "./App.css";
-import { Dropdown, DropdownItem } from "./Components/Dropdown/Dropdown";
+import Dropdown from "./Components/Dropdown/Dropdown";
+import { DropdownMenuItem } from "./Components/Dropdown/DropdownMenu";
 
-const items: DropdownItem[] = [
-  { text: "First item", description: "This is the first non-original item" },
-  { text: "Second item", description: "This is the second non-original item" },
+const myItems: DropdownMenuItem[] = [
+  {
+    text: "JavaScript: The Good Parts",
+    description: "The first book to help me understand JavaScript",
+  },
+  {
+    text: "Ansible for DevOps",
+    description: "Learning Ansible also helped me appreciate Python",
+  },
+  {
+    text: "Linux Basics for Hackers",
+    description: "My introduction to networking and sysadmin",
+  },
 ];
 
 const App = () => {
@@ -11,7 +22,7 @@ const App = () => {
     <main>
       <h1>Headless dropdown component</h1>
       <div>
-        <Dropdown items={items} />
+        <Dropdown dropdownItems={myItems} />
       </div>
     </main>
   );

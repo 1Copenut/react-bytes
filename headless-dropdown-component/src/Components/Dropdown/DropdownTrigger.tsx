@@ -1,8 +1,8 @@
 const DropdownTrigger = ({
-  text,
+  selection,
   onClick,
 }: {
-  text: string;
+  selection: string;
   onClick: () => void;
 }) => {
   return (
@@ -11,7 +11,7 @@ const DropdownTrigger = ({
       tabIndex={0}
       onClick={onClick}
     >
-      <span className="cd-component__dropdown-selection">{text}</span>
+      <span className="cd-component__dropdown-selection">{selection}</span>
     </div>
   );
 };
