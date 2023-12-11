@@ -47,6 +47,11 @@ const Dropdown = ({ dropdownItems }: DropdownProps) => {
           setSelectedIndex(selectedIndex - 1);
         }
         break;
+      case "Escape":
+        if (isOpen) {
+          setIsOpen(false);
+        }
+        break;
       default:
         null;
     }
