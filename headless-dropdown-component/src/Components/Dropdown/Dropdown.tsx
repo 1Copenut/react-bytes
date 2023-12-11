@@ -1,13 +1,16 @@
 import { useState } from "react";
 
 import DropdownTrigger from "./DropdownTrigger";
-import { DropdownMenu, DropdownMenuItem, DropdownProps } from "./DropdownMenu";
+import { DropdownMenu, DropdownItem, DropdownProps } from "./DropdownMenu";
 
 const Dropdown = ({ dropdownItems }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<DropdownMenuItem | null>(
-    null
-  );
+  const [selectedItem, setSelectedItem] = useState<DropdownItem | null>(null);
+
+  const handleDropdownItemClick = (currentItem: DropdownItem) => {
+    setSelectedItem(currentItem);
+    setIsOpen(false);
+  };
 
   return (
     <div className="cd-component__dropdown">
@@ -19,7 +22,7 @@ const Dropdown = ({ dropdownItems }: DropdownProps) => {
       {isOpen && (
         <DropdownMenu
           dropdownItems={dropdownItems}
-          onDropdownItemClick={setSelectedItem}
+          onDropdownItemClick={handleDropdownItemClick}
         />
       )}
     </div>

@@ -1,8 +1,8 @@
 import "./App.css";
 import Dropdown from "./Components/Dropdown/Dropdown";
-import { DropdownMenuItem } from "./Components/Dropdown/DropdownMenu";
+import { DropdownItem } from "./Components/Dropdown/DropdownMenu";
 
-const myItems: DropdownMenuItem[] = [
+const myItems: DropdownItem[] = [
   {
     text: "JavaScript: The Good Parts",
     description: "The first book to help me understand JavaScript",

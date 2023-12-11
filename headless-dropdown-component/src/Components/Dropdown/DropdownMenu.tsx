@@ -1,19 +1,19 @@
-interface DropdownMenuItem {
+interface DropdownItem {
   icon?: string;
   text: string;
   description: string;
 }
 
 type DropdownProps = {
-  dropdownItems: DropdownMenuItem[];
+  dropdownItems: DropdownItem[];
 };
 
 const DropdownMenu = ({
   dropdownItems,
   onDropdownItemClick,
 }: {
-  dropdownItems: DropdownMenuItem[];
-  onDropdownItemClick: (dropdownItem: DropdownMenuItem) => void;
+  dropdownItems: DropdownItem[];
+  onDropdownItemClick: (dropdownItem: DropdownItem) => void;
 }) => {
   return (
     <div className="cd-component__dropdown-menu">
@@ -35,4 +35,4 @@ const DropdownMenu = ({
 };
 
 export { DropdownMenu };
-export type { DropdownMenuItem, DropdownProps };
+export type { DropdownItem, DropdownProps };
