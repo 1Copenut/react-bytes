@@ -17,13 +17,16 @@ const Dropdown = ({ dropdownItems }: DropdownProps) => {
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     switch (e.key) {
+      // Toggle menu and update trigger text if users made a selection
       case "Enter":
       case " ":
+        setIsOpen(!isOpen);
         if (selectedIndex !== -1) {
           setSelectedItem(dropdownItems[selectedIndex]);
         }
-        setIsOpen(!isOpen);
         break;
+
+      // Ascending traveral through list items 1-N. Wraps to item 1.
       case "ArrowDown":
       case "ArrowRight":
         e.preventDefault();
@@ -41,6 +44,8 @@ const Dropdown = ({ dropdownItems }: DropdownProps) => {
           setSelectedIndex(selectedIndex + 1);
         }
         break;
+
+      // Descending traveral through list items N-1. Wraps to item N.
       case "ArrowUp":
       case "ArrowLeft":
         e.preventDefault();
@@ -57,13 +62,18 @@ const Dropdown = ({ dropdownItems }: DropdownProps) => {
         } else {
           setSelectedIndex(selectedIndex - 1);
         }
-
         break;
+
+      // Close menu immediately
       case "Escape":
         if (isOpen) {
           setIsOpen(false);
         }
         break;
+
+      // TODO: Add Home key to jump to item 1
+      // TODO: Add End key to jump to item N
+
       default:
         null;
     }
