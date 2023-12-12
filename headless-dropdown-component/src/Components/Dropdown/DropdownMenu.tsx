@@ -17,26 +17,34 @@ const DropdownMenu = ({
   onDropdownItemClick: (dropdownItem: DropdownItem) => void;
   selectedItemIndex: number;
 }) => {
+  const activeDescendantId =
+    selectedItemIndex === -1 ? undefined : `dropdown-item-${selectedItemIndex}`;
+
   return (
-    <div className="cd-component__dropdown-menu">
+    <ul
+      aria-activedescendant={activeDescendantId}
+      aria-label="My dropdown listbox"
+      className="cd-component__dropdown-menu"
+      role="listbox"
+      // tabIndex={0} // TODO: Add focus management so Safari + VO behave correctly
+    >
       {dropdownItems.map((dropdownItem, index) => (
-        <div
-          key={index}
-          onClick={() => onDropdownItemClick(dropdownItem)}
+        <li
+          aria-selected={index === selectedItemIndex ? "true" : undefined}
           className={
             index === selectedItemIndex
               ? "cd-component__dropdown-item js__dropdown-item--selected"
               : "cd-component__dropdown-item"
           }
+          id={`dropdown-item-${index}`}
+          key={index}
+          onClick={() => onDropdownItemClick(dropdownItem)}
+          role="option"
         >
-          <div className="cd-component__dropdown-item--details">
-            {/* TODO: Add image */}
-            <div>{dropdownItem.text}</div>
-            <small>{dropdownItem.description}</small>
-          </div>
-        </div>
+          {dropdownItem.text}
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

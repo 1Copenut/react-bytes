@@ -3,6 +3,8 @@ import { useState } from "react";
 import DropdownTrigger from "./DropdownTrigger";
 import { DropdownMenu, DropdownItem, DropdownProps } from "./DropdownMenu";
 
+import "./Dropdown.css";
+
 const Dropdown = ({ dropdownItems }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<DropdownItem | null>(null);
@@ -24,6 +26,9 @@ const Dropdown = ({ dropdownItems }: DropdownProps) => {
         break;
       case "ArrowDown":
       case "ArrowRight":
+        e.preventDefault();
+        e.stopPropagation();
+
         if (isOpen !== true) {
           setIsOpen(true);
         }
@@ -38,14 +43,21 @@ const Dropdown = ({ dropdownItems }: DropdownProps) => {
         break;
       case "ArrowUp":
       case "ArrowLeft":
+        e.preventDefault();
+        e.stopPropagation();
+
         if (isOpen !== true) {
           setIsOpen(true);
         }
-        if (selectedIndex === -1 || selectedIndex === 0) {
+
+        if (selectedIndex === -1) {
+          setSelectedIndex(0);
+        } else if (selectedIndex === 0) {
           setSelectedIndex(dropdownItems.length - 1);
         } else {
           setSelectedIndex(selectedIndex - 1);
         }
+
         break;
       case "Escape":
         if (isOpen) {

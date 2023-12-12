@@ -23,6 +23,7 @@ const App = () => {
       <h1>Headless dropdown component</h1>
       <div>
         <Dropdown dropdownItems={myItems} />
+        <p>Test text post dropdown.</p>
       </div>
     </main>
   );
