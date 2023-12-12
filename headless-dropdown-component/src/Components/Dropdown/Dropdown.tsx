@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 import DropdownTrigger from "./DropdownTrigger";
-import { DropdownMenu, DropdownItem, DropdownProps } from "./DropdownMenu";
+import { DropdownMenu } from "./DropdownMenu";
+import { DropdownItem, DropdownProps } from "./types/DropdownTypes";
 
 import "./Dropdown.css";
 

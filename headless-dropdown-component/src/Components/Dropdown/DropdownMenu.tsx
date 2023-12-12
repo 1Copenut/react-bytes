@@ -1,12 +1,4 @@
-interface DropdownItem {
-  icon?: string;
-  text: string;
-  description: string;
-}
-
-type DropdownProps = {
-  dropdownItems: DropdownItem[];
-};
+import { DropdownItem, DropdownProps } from "./types/DropdownTypes";
 
 const DropdownMenu = ({
   dropdownItems,
