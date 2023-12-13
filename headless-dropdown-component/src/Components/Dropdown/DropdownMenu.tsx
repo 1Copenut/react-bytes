@@ -14,7 +14,7 @@ const DropdownMenu = ({
       {dropdownItems.map((dropdownItem, index) => (
         <li
           key={index}
-          onClick={() => onDropdownItemClick(dropdownItem)}
+          onClick={() => onDropdownItemClick(index)}
           {...menuItemAttributes(index)}
         >
           <p>{dropdownItem.text}</p>

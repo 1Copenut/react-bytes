@@ -6,10 +6,10 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
   const [selectedItem, setSelectedItem] = useState<DropdownItem | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
-  const handleDropdownItemClick = (currentItem: DropdownItem) => {
-    setSelectedItem(currentItem);
+  const handleDropdownItemClick = (index: number) => {
+    setSelectedItem(dropdownItems[index]);
+    setSelectedIndex(index);
     setIsOpen(false);
-    // TODO: Set selected item so it's blue when we open on click a second time
   };
 
   const handleDropdownVisibility = () => setIsOpen(!isOpen);
