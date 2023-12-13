@@ -7,7 +7,7 @@ const DropdownTrigger = ({
 }: DropdownTriggerProps) => {
   return (
     <div onClick={onClick} {...triggerAttributes()}>
-      <span className="cd-component__dropdown-selection">{selection}</span>
+      {selection}
     </div>
   );
 };

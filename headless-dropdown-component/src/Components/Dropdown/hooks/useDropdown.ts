@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { DropdownItem } from "../types/DropdownTypes";
-import { TriggerAttributes } from "../types/HelperTypes";
 
 const useDropdown = (dropdownItems: DropdownItem[]) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,12 +79,20 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
   };
 
   const setMenuAttributes = () => ({
+    "aria-activedescendant":
+      selectedIndex === -1 ? undefined : `dropdown-item-${selectedIndex}`,
     className: "cd-component__dropdown-menu",
     role: "listbox",
   });
 
-  const setTriggerAttributes = () => ({
-    className: "cd-component__dropdown-trigger",
+  const setMenuItemAttributes = (index: number) => ({
+    "aria-selected": index === selectedIndex ? true : undefined,
+    id: `dropdown-item-${index}`,
+    role: "option",
+  });
+
+  const setTriggerAttributes = (userClass?: string) => ({
+    className: userClass ?? "cd-component__dropdown-trigger",
     role: "button",
     tabIndex: 0,
     type: "button",
@@ -99,6 +106,7 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
     handleDropdownVisibility,
     handleKeyDown,
     setMenuAttributes,
+    setMenuItemAttributes,
     setTriggerAttributes,
   };
 };

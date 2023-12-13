@@ -1,4 +1,8 @@
-import { MenuAttributes, TriggerAttributes } from "./HelperTypes";
+import {
+  MenuAttributes,
+  MenuItemAttributes,
+  TriggerAttributes,
+} from "./HelperTypes";
 
 interface DropdownItem {
   icon?: string;
@@ -13,7 +17,11 @@ type DropdownProps = {
 type DropdownMenuProps = {
   ariaLabel: string;
   dropdownItems: DropdownItem[];
-  menuAttributes: () => MenuAttributes;
+  menuAttributes: (selectedIndex: number) => MenuAttributes;
+  menuItemAttributes: (
+    index: number,
+    selectedIndex: number
+  ) => MenuItemAttributes;
   onDropdownItemClick: (dropdownItem: DropdownItem) => void;
   selectedIndex: number;
 };
@@ -21,7 +29,7 @@ type DropdownMenuProps = {
 type DropdownTriggerProps = {
   selection: string;
   onClick: () => void;
-  triggerAttributes: () => TriggerAttributes;
+  triggerAttributes: (userClass?: string) => TriggerAttributes;
 };
 
 export type {
