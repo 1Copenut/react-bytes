@@ -13,22 +13,27 @@ const Dropdown = ({ dropdownItems }: DropdownProps) => {
     selectedIndex,
     selectedItem,
     handleDropdownItemClick,
+    handleDropdownVisibility,
     handleKeyDown,
-    toggleDropdown,
+    setMenuAttributes,
+    setTriggerAttributes,
   } = useDropdown(dropdownItems);
 
   return (
     <div className="cd-component__dropdown" onKeyDown={handleKeyDown}>
       <DropdownTrigger
-        onClick={toggleDropdown}
+        onClick={handleDropdownVisibility}
         selection={selectedItem ? selectedItem.text : "Select an item..."}
+        triggerAttributes={setTriggerAttributes}
       />
 
       {isOpen && (
         <DropdownMenu
+          ariaLabel="Listbox override!>"
           dropdownItems={dropdownItems}
           onDropdownItemClick={handleDropdownItemClick}
-          selectedItemIndex={selectedIndex}
+          selectedIndex={selectedIndex}
+          menuAttributes={setMenuAttributes}
         />
       )}
     </div>

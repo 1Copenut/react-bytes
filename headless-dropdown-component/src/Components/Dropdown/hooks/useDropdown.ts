@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { DropdownItem } from "../types/DropdownTypes";
+import { TriggerAttributes } from "../types/HelperTypes";
 
 const useDropdown = (dropdownItems: DropdownItem[]) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +11,8 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
     setSelectedItem(currentItem);
     setIsOpen(false);
   };
+
+  const handleDropdownVisibility = () => setIsOpen(!isOpen);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     switch (e.key) {
@@ -31,6 +34,7 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
         if (isOpen !== true) {
           setIsOpen(true);
         }
+
         if (
           selectedIndex === -1 ||
           selectedIndex === dropdownItems.length - 1
@@ -75,15 +79,27 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
     }
   };
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const setMenuAttributes = () => ({
+    className: "cd-component__dropdown-menu",
+    role: "listbox",
+  });
+
+  const setTriggerAttributes = () => ({
+    className: "cd-component__dropdown-trigger",
+    role: "button",
+    tabIndex: 0,
+    type: "button",
+  });
 
   return {
     isOpen,
     selectedIndex,
     selectedItem,
     handleDropdownItemClick,
+    handleDropdownVisibility,
     handleKeyDown,
-    toggleDropdown,
+    setMenuAttributes,
+    setTriggerAttributes,
   };
 };
 

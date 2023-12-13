@@ -1,16 +1,12 @@
+import { DropdownTriggerProps } from "./types/DropdownTypes";
+
 const DropdownTrigger = ({
   selection,
   onClick,
-}: {
-  selection: string;
-  onClick: () => void;
-}) => {
+  triggerAttributes,
+}: DropdownTriggerProps) => {
   return (
-    <div
-      className="cd-component__dropdown-trigger"
-      tabIndex={0}
-      onClick={onClick}
-    >
+    <div onClick={onClick} {...triggerAttributes()}>
       <span className="cd-component__dropdown-selection">{selection}</span>
     </div>
   );

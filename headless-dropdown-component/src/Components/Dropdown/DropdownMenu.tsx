@@ -1,30 +1,27 @@
-import { DropdownItem } from "./types/DropdownTypes";
+import { DropdownMenuProps } from "./types/DropdownTypes";
 
 const DropdownMenu = ({
+  ariaLabel = "Custom listbox",
   dropdownItems,
+  menuAttributes,
   onDropdownItemClick,
-  selectedItemIndex,
-}: {
-  dropdownItems: DropdownItem[];
-  onDropdownItemClick: (dropdownItem: DropdownItem) => void;
-  selectedItemIndex: number;
-}) => {
+  selectedIndex,
+}: DropdownMenuProps) => {
   const activeDescendantId =
-    selectedItemIndex === -1 ? undefined : `dropdown-item-${selectedItemIndex}`;
+    selectedIndex === -1 ? undefined : `dropdown-item-${selectedIndex}`;
 
   return (
     <ul
       aria-activedescendant={activeDescendantId}
-      aria-label="My dropdown listbox"
-      className="cd-component__dropdown-menu"
-      role="listbox"
+      aria-label={ariaLabel}
+      {...menuAttributes()}
       // tabIndex={0} // TODO: Add focus management so Safari + VO behave correctly
     >
       {dropdownItems.map((dropdownItem, index) => (
         <li
-          aria-selected={index === selectedItemIndex ? "true" : undefined}
+          aria-selected={index === selectedIndex ? "true" : undefined}
           className={
-            index === selectedItemIndex
+            index === selectedIndex
               ? "cd-component__dropdown-item js__dropdown-item--selected"
               : "cd-component__dropdown-item"
           }
@@ -33,7 +30,8 @@ const DropdownMenu = ({
           onClick={() => onDropdownItemClick(dropdownItem)}
           role="option"
         >
-          {dropdownItem.text}
+          <p>{dropdownItem.text}</p>
+          <small>{dropdownItem.description}</small>
         </li>
       ))}
     </ul>
