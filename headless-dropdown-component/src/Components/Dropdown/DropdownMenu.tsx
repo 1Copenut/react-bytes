@@ -1,4 +1,4 @@
-import { DropdownItem, DropdownProps } from "./types/DropdownTypes";
+import { DropdownItem } from "./types/DropdownTypes";
 
 const DropdownMenu = ({
   dropdownItems,
@@ -40,5 +40,4 @@ const DropdownMenu = ({
   );
 };
 
-export { DropdownMenu };
-export type { DropdownItem, DropdownProps };
+export default DropdownMenu;
