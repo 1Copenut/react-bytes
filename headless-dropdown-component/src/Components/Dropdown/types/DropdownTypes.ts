@@ -17,11 +17,8 @@ type DropdownProps = {
 type DropdownMenuProps = {
   ariaLabel: string;
   dropdownItems: DropdownItem[];
-  menuAttributes: (selectedIndex: number) => MenuAttributes;
-  menuItemAttributes: (
-    index: number,
-    selectedIndex: number
-  ) => MenuItemAttributes;
+  menuAttributes: (ariaLabel?: string) => MenuAttributes;
+  menuItemAttributes: (index: number) => MenuItemAttributes;
   onDropdownItemClick: (dropdownItem: DropdownItem) => void;
   selectedIndex: number;
 };

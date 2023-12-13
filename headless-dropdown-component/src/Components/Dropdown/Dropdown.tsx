@@ -1,6 +1,5 @@
 import DropdownTrigger from "./DropdownTrigger";
 import DropdownMenu from "./DropdownMenu";
-
 import useDropdown from "./hooks/useDropdown";
 
 import { DropdownProps } from "./types/DropdownTypes";

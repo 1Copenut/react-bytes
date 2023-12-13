@@ -9,6 +9,7 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
   const handleDropdownItemClick = (currentItem: DropdownItem) => {
     setSelectedItem(currentItem);
     setIsOpen(false);
+    // TODO: Set selected item so it's blue when we open on click a second time
   };
 
   const handleDropdownVisibility = () => setIsOpen(!isOpen);
@@ -78,15 +79,20 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
     }
   };
 
-  const setMenuAttributes = () => ({
+  const setMenuAttributes = (ariaLabel?: string) => ({
     "aria-activedescendant":
       selectedIndex === -1 ? undefined : `dropdown-item-${selectedIndex}`,
+    "aria-label": ariaLabel ?? "Custom React dropdown",
     className: "cd-component__dropdown-menu",
     role: "listbox",
   });
 
   const setMenuItemAttributes = (index: number) => ({
     "aria-selected": index === selectedIndex ? true : undefined,
+    className:
+      index === selectedIndex
+        ? "cd-component__dropdown-item js__dropdown-item--selected"
+        : "cd-component__dropdown-item",
     id: `dropdown-item-${index}`,
     role: "option",
   });
