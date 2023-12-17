@@ -9,11 +9,14 @@ type MenuItemAttributes = {
   "aria-selected": boolean | undefined;
   className: string;
   id: string;
+  ref: React.RefObject<HTMLUListElement>;
   role: string;
+  tabIndex: number;
 };
 
 type TriggerAttributes = {
   className: string;
+  ref: React.RefObject<HTMLDivElement>;
   role: string;
   tabIndex: number;
   type: string;

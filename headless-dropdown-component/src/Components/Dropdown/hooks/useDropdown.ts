@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { DropdownItem } from "../types/DropdownTypes";
 
 const useDropdown = (dropdownItems: DropdownItem[]) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<DropdownItem | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+
+  const menuRef = useRef<HTMLUListElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isOpen && menuRef.current) {
+      menuRef.current.focus();
+    }
+
+    if (!isOpen && triggerRef.current) {
+      triggerRef.current.focus();
+    }
+  }, [isOpen]);
 
   const handleDropdownItemClick = (index: number) => {
     setSelectedItem(dropdownItems[index]);
@@ -84,7 +97,9 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
       selectedIndex === -1 ? undefined : `dropdown-item-${selectedIndex}`,
     "aria-label": ariaLabel ?? "Custom React dropdown",
     className: "cd-component__dropdown-menu",
+    ref: menuRef,
     role: "listbox",
+    tabIndex: -1,
   });
 
   const setMenuItemAttributes = (index: number) => ({
@@ -99,6 +114,7 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
 
   const setTriggerAttributes = (userClass?: string) => ({
     className: userClass ?? "cd-component__dropdown-trigger",
+    ref: triggerRef,
     role: "button",
     tabIndex: 0,
     type: "button",
@@ -106,6 +122,8 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
 
   return {
     isOpen,
+    menuRef,
+    triggerRef,
     selectedIndex,
     selectedItem,
     handleDropdownItemClick,
