@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useState, useRef } from "react";
 import { DropdownItem } from "../types/DropdownTypes";
+import {
+  MenuAttributes,
+  MenuItemAttributes,
+  TriggerAttributes,
+} from "../types/HelperTypes";
 
 const useDropdown = (dropdownItems: DropdownItem[]) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +22,7 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
 
   const handleDropdownVisibility = () => setIsOpen(!isOpen);
 
-  const handleFocus = useCallback(() => {
+  const handleKeyboardFocus = useCallback(() => {
     if (isOpen) {
       menuRef.current!.focus();
     }
@@ -92,11 +97,14 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
     }
   };
 
-  useEffect(() => {
-    handleFocus();
-  }, [handleFocus]);
+  // TODO: Close the dropdown when user clicks outside the container
+  // handleOutsideClick(e) {}
 
-  const setMenuAttributes = (ariaLabel?: string) => ({
+  useEffect(() => {
+    handleKeyboardFocus();
+  }, [handleKeyboardFocus]);
+
+  const setMenuAttributes = (ariaLabel?: string): MenuAttributes => ({
     "aria-activedescendant":
       selectedIndex === -1 ? undefined : `dropdown-item-${selectedIndex}`,
     "aria-label": ariaLabel ?? "Custom React dropdown",
@@ -106,7 +114,7 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
     tabIndex: -1,
   });
 
-  const setMenuItemAttributes = (index: number) => ({
+  const setMenuItemAttributes = (index: number): MenuItemAttributes => ({
     "aria-selected": index === selectedIndex ? true : undefined,
     className:
       index === selectedIndex
@@ -116,7 +124,7 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
     role: "option",
   });
 
-  const setTriggerAttributes = (userClass?: string) => ({
+  const setTriggerAttributes = (userClass?: string): TriggerAttributes => ({
     className: userClass ?? "cd-component__dropdown-trigger",
     ref: triggerRef,
     role: "button",
