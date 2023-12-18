@@ -2,7 +2,9 @@ type MenuAttributes = {
   "aria-activedescendant": string | undefined;
   "aria-label": string;
   className: string;
+  ref: React.RefObject<HTMLUListElement>;
   role: string;
+  tabIndex: number;
 };
 
 type MenuItemAttributes = {
@@ -14,6 +16,7 @@ type MenuItemAttributes = {
 
 type TriggerAttributes = {
   className: string;
+  ref: React.RefObject<HTMLDivElement>;
   role: string;
   tabIndex: number;
   type: string;

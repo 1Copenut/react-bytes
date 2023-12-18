@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { DropdownItem } from "../types/DropdownTypes";
+import {
+  MenuAttributes,
+  MenuItemAttributes,
+  TriggerAttributes,
+} from "../types/HelperTypes";
 
 const useDropdown = (dropdownItems: DropdownItem[]) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<DropdownItem | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+
+  const menuRef = useRef<HTMLUListElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   const handleDropdownItemClick = (index: number) => {
     setSelectedItem(dropdownItems[index]);
@@ -13,6 +21,16 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
   };
 
   const handleDropdownVisibility = () => setIsOpen(!isOpen);
+
+  const handleKeyboardFocus = useCallback(() => {
+    if (isOpen) {
+      menuRef.current!.focus();
+    }
+
+    if (!isOpen && selectedIndex !== -1) {
+      triggerRef.current!.focus();
+    }
+  }, [isOpen]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     switch (e.key) {
@@ -79,15 +97,24 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
     }
   };
 
-  const setMenuAttributes = (ariaLabel?: string) => ({
+  // TODO: Close the dropdown when user clicks outside the container
+  // handleOutsideClick(e) {}
+
+  useEffect(() => {
+    handleKeyboardFocus();
+  }, [handleKeyboardFocus]);
+
+  const setMenuAttributes = (ariaLabel?: string): MenuAttributes => ({
     "aria-activedescendant":
       selectedIndex === -1 ? undefined : `dropdown-item-${selectedIndex}`,
     "aria-label": ariaLabel ?? "Custom React dropdown",
     className: "cd-component__dropdown-menu",
+    ref: menuRef,
     role: "listbox",
+    tabIndex: -1,
   });
 
-  const setMenuItemAttributes = (index: number) => ({
+  const setMenuItemAttributes = (index: number): MenuItemAttributes => ({
     "aria-selected": index === selectedIndex ? true : undefined,
     className:
       index === selectedIndex
@@ -97,8 +124,9 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
     role: "option",
   });
 
-  const setTriggerAttributes = (userClass?: string) => ({
+  const setTriggerAttributes = (userClass?: string): TriggerAttributes => ({
     className: userClass ?? "cd-component__dropdown-trigger",
+    ref: triggerRef,
     role: "button",
     tabIndex: 0,
     type: "button",
@@ -106,6 +134,8 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
 
   return {
     isOpen,
+    menuRef,
+    triggerRef,
     selectedIndex,
     selectedItem,
     handleDropdownItemClick,
