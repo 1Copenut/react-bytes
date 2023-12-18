@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { DropdownItem } from "../types/DropdownTypes";
 
 const useDropdown = (dropdownItems: DropdownItem[]) => {
@@ -9,16 +9,6 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
   const menuRef = useRef<HTMLUListElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (isOpen && menuRef.current) {
-      menuRef.current.focus();
-    }
-
-    if (!isOpen && triggerRef.current) {
-      triggerRef.current.focus();
-    }
-  }, [isOpen]);
-
   const handleDropdownItemClick = (index: number) => {
     setSelectedItem(dropdownItems[index]);
     setSelectedIndex(index);
@@ -26,6 +16,16 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
   };
 
   const handleDropdownVisibility = () => setIsOpen(!isOpen);
+
+  const handleFocus = useCallback(() => {
+    if (isOpen) {
+      menuRef.current!.focus();
+    }
+
+    if (!isOpen && selectedIndex !== -1) {
+      triggerRef.current!.focus();
+    }
+  }, [isOpen]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     switch (e.key) {
@@ -91,6 +91,10 @@ const useDropdown = (dropdownItems: DropdownItem[]) => {
         null;
     }
   };
+
+  useEffect(() => {
+    handleFocus();
+  }, [handleFocus]);
 
   const setMenuAttributes = (ariaLabel?: string) => ({
     "aria-activedescendant":
