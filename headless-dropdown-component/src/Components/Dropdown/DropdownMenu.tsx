@@ -7,10 +7,7 @@ const DropdownMenu = ({
   onDropdownItemClick,
 }: DropdownMenuProps) => {
   return (
-    <ul
-      // tabIndex={0} // TODO: Add focus management so Safari + VO behave correctly
-      {...menuAttributes()}
-    >
+    <ul {...menuAttributes()}>
       {dropdownItems.map((dropdownItem, index) => (
         <li
           key={index}
