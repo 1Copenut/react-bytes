@@ -1,6 +1,6 @@
 import "./App.css";
 import Dropdown from "./Components/Dropdown/Dropdown";
-import { DropdownItem } from "./Components/Dropdown/DropdownMenu";
+import { DropdownItem } from "./Components/Dropdown/types/DropdownTypes";
 
 const myItems: DropdownItem[] = [
   {
