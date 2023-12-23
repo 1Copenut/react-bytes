@@ -1,56 +1,50 @@
-import { ReactElement, useState } from "react";
+import { useState } from "react";
+
+import TabItem from "./TabItem";
+import {
+  TabDataArrType,
+  HandleEventFn,
+  HandleRenderTabsFn,
+} from "./types/TabTypes";
+
 import "./Tabs.css";
 
-interface Tab {
-  title: string;
-  content: string;
-}
+const Tablist = ({ tabData }: TabDataArrType) => {
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-const tabData: Tab[] = [
-  {
-    title: "Tab 1 title",
-    content:
-      "This is the content for tab number one. Pretty basic at this point.",
-  },
-  {
-    title: "Tab 2 title",
-    content:
-      "This is the content for tab number two. Pretty basic at this point.",
-  },
-  {
-    title: "Tab 3 title",
-    content:
-      "This is the content for tab number three. Pretty basic at this point.",
-  },
-];
+  const handleClick: HandleEventFn = (e) => {
+    e.preventDefault();
+    let target = e.target as HTMLElement;
 
-const renderTabs = (currentTabIndex: number): ReactElement[] => {
-  return tabData.map((tab, index) => {
-    const { title } = tab;
-    const tabClass = index === currentTabIndex ? "js__tab--current" : undefined;
+    tabData.map((tab, index) => {
+      if (tab.title === target.innerText) {
+        setCurrentIndex(index);
+      }
+    });
+  };
 
-    return (
-      <li role="presentation" key={index}>
-        <a
-          className={tabClass}
-          href={`#tab-${index}`}
-          id={`tab-link-${index}`}
-          role="tab"
-        >
-          {title}
-        </a>
-      </li>
-    );
-  });
-};
-
-const Tablist = () => {
-  const [currentTab, setCurrentTab] = useState<number>(0);
+  const renderTabs: HandleRenderTabsFn = (
+    tabData,
+    currentIndex,
+    handleClick
+  ) => {
+    return tabData.map((tab, index) => {
+      const { title } = tab;
+      return (
+        <TabItem
+          index={index}
+          currentIndex={currentIndex}
+          handleClick={handleClick}
+          title={title}
+        />
+      );
+    });
+  };
 
   return (
     <>
       <ul role="tablist" className="cd-component__tablist">
-        {renderTabs(currentTab)}
+        {renderTabs(tabData, currentIndex, handleClick)}
       </ul>
       <div aria-labelledby="tab-link-1" id="tab-1" role="tabpanel" tabIndex={0}>
         This is the content for tab number one. Pretty basic at this point.
