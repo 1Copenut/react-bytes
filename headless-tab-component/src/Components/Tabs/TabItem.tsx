@@ -1,6 +1,11 @@
 import { TabItemType } from "./types/TabTypes";
 
-const TabItem = ({ title, index, currentIndex, handleClick }: TabItemType) => {
+const TabItem: React.FC<TabItemType> = ({
+  title,
+  index,
+  currentIndex,
+  handleClick,
+}) => {
   const tabClass = index === currentIndex ? "js__tab--current" : undefined;
 
   return (

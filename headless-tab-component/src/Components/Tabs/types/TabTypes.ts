@@ -5,10 +5,6 @@ interface TabDataType {
   content: string;
 }
 
-type TabDataArrType = {
-  tabData: TabDataType[];
-};
-
 type TabItemType = Pick<TabDataType, "title"> & {
   index: number;
   currentIndex: number;
@@ -19,15 +15,9 @@ type TabItemType = Pick<TabDataType, "title"> & {
 type HandleEventFn = (e: React.SyntheticEvent) => void;
 
 type HandleRenderTabsFn = (
-  tabData: TabDataArrType["tabData"],
+  tabData: TabDataType[],
   currentIndex: number,
   handleClick: HandleEventFn
 ) => ReactElement[];
 
-export type {
-  TabDataType,
-  TabDataArrType,
-  TabItemType,
-  HandleEventFn,
-  HandleRenderTabsFn,
-};
+export type { TabDataType, TabItemType, HandleEventFn, HandleRenderTabsFn };

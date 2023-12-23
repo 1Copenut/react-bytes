@@ -2,14 +2,14 @@ import { useState } from "react";
 
 import TabItem from "./TabItem";
 import {
-  TabDataArrType,
+  TabDataType,
   HandleEventFn,
   HandleRenderTabsFn,
 } from "./types/TabTypes";
 
 import "./Tabs.css";
 
-const Tablist = ({ tabData }: TabDataArrType) => {
+const Tablist: React.FC<{ tabData: TabDataType[] }> = ({ tabData }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const handleClick: HandleEventFn = (e) => {
