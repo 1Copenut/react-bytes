@@ -16,11 +16,15 @@ const Tablist: React.FC<{ tabData: TabDataType[] }> = ({ tabData }) => {
     e.preventDefault();
     let target = e.target as HTMLElement;
 
-    tabData.map((tab, index) => {
-      if (tab.title === target.innerText) {
-        setCurrentIndex(index);
-      }
-    });
+    const newTabTitle = ({ title }: TabDataType) => title === target.innerText;
+    const newTabIndex = tabData.findIndex(newTabTitle);
+
+    if (newTabIndex === -1) {
+      // Something went wrong, so fall back to the first tab. Should never happen.
+      setCurrentIndex(0);
+    } else {
+      setCurrentIndex(newTabIndex);
+    }
   };
 
   const renderTabs: HandleRenderTabsFn = (
