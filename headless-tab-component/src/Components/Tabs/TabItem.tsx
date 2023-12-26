@@ -9,7 +9,7 @@ const TabItem: React.FC<TabItemType> = ({
   const tabClass = index === currentIndex ? "js__tab--current" : undefined;
 
   return (
-    <li role="presentation" key={index}>
+    <li role="presentation">
       <a
         className={tabClass}
         href={`#tab-${index}`}

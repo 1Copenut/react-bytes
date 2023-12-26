@@ -43,6 +43,7 @@ const Tablist: React.FC<{ tabData: TabDataType[] }> = ({ tabData }) => {
           currentIndex={currentIndex}
           handleClick={handleClick}
           title={title}
+          key={index}
         />
       );
     });
