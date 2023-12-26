@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 
 interface TabDataType {
   title: string;
-  content: string;
+  content: string | ReactNode;
 }
 
 type TabItemType = Pick<TabDataType, "title"> & {
@@ -10,6 +10,8 @@ type TabItemType = Pick<TabDataType, "title"> & {
   currentIndex: number;
   handleClick: HandleEventFn;
 };
+
+type TabPanelType = Pick<TabDataType, "content">;
 
 // TODO: Move to helper types!
 type HandleEventFn = (e: React.SyntheticEvent) => void;
@@ -20,4 +22,10 @@ type HandleRenderTabsFn = (
   handleClick: HandleEventFn
 ) => ReactElement[];
 
-export type { TabDataType, TabItemType, HandleEventFn, HandleRenderTabsFn };
+export type {
+  TabDataType,
+  TabItemType,
+  TabPanelType,
+  HandleEventFn,
+  HandleRenderTabsFn,
+};

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import TabItem from "./TabItem";
+import TabPanel from "./TabPanel";
 import {
   TabDataType,
   HandleEventFn,
@@ -22,8 +23,10 @@ const Tablist: React.FC<{ tabData: TabDataType[] }> = ({ tabData }) => {
     if (newTabIndex === -1) {
       // Something went wrong, so fall back to the first tab. Should never happen.
       setCurrentIndex(0);
+      renderTabContent(0);
     } else {
       setCurrentIndex(newTabIndex);
+      renderTabContent(newTabIndex);
     }
   };
 
@@ -45,31 +48,18 @@ const Tablist: React.FC<{ tabData: TabDataType[] }> = ({ tabData }) => {
     });
   };
 
+  const renderTabContent = (currentIndex: number) => {
+    const currentContent = tabData[currentIndex].content;
+    return <TabPanel content={currentContent} />;
+  };
+
   return (
     <>
       <ul role="tablist" className="cd-component__tablist">
         {renderTabs(tabData, currentIndex, handleClick)}
       </ul>
       <div aria-labelledby="tab-link-1" id="tab-1" role="tabpanel" tabIndex={0}>
-        This is the content for tab number one. Pretty basic at this point.
-      </div>
-      <div
-        aria-labelledby="tab-link-2"
-        id="tab-2"
-        role="tabpanel"
-        tabIndex={0}
-        className="js__visibility--is-hidden"
-      >
-        This is the content for tab number one. Pretty basic at this point.
-      </div>
-      <div
-        aria-labelledby="tab-link-3"
-        id="tab-3"
-        role="tabpanel"
-        tabIndex={0}
-        className="js__visibility--is-hidden"
-      >
-        This is the content for tab number one. Pretty basic at this point.
+        {renderTabContent(currentIndex)}
       </div>
     </>
   );

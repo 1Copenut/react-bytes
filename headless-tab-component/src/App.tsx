@@ -15,8 +15,13 @@ const tabData: TabDataType[] = [
   },
   {
     title: "Tab 3 title",
-    content:
-      "This is the content for tab number three. Pretty basic at this point.",
+    content: (
+      <>
+        <div>
+          This is the content for tab number three. Pretty basic at this point.
+        </div>
+      </>
+    ),
   },
 ];
 
