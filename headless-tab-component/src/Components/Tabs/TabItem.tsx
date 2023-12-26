@@ -3,20 +3,13 @@ import { TabItemType } from "./types/TabTypes";
 const TabItem: React.FC<TabItemType> = ({
   title,
   index,
-  currentIndex,
   handleClick,
+  tabListItemAttributes,
+  tabListLinkAttributes,
 }) => {
-  const tabClass = index === currentIndex ? "js__tab--current" : undefined;
-
   return (
-    <li role="presentation">
-      <a
-        className={tabClass}
-        href={`#tab-${index}`}
-        id={`tab-link-${index}`}
-        role="tab"
-        onClick={handleClick}
-      >
+    <li {...tabListItemAttributes()}>
+      <a onClick={handleClick} {...tabListLinkAttributes(index)}>
         {title}
       </a>
     </li>

@@ -1,68 +1,60 @@
-import { useState } from "react";
+import { useCallback } from "react";
 
 import TabItem from "./TabItem";
 import TabPanel from "./TabPanel";
-import {
-  TabDataType,
-  HandleEventFn,
-  HandleRenderTabsFn,
-} from "./types/TabTypes";
+import useTabs from "./hooks/useTabs";
+import { TabListType, HandleRenderTabsFn } from "./types/TabTypes";
 
 import "./Tabs.css";
 
-const Tablist: React.FC<{ tabData: TabDataType[] }> = ({ tabData }) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-
-  const handleClick: HandleEventFn = (e) => {
-    e.preventDefault();
-    let target = e.target as HTMLElement;
-
-    const newTabTitle = ({ title }: TabDataType) => title === target.innerText;
-    const newTabIndex = tabData.findIndex(newTabTitle);
-
-    if (newTabIndex === -1) {
-      // Something went wrong, so fall back to the first tab. Should never happen.
-      setCurrentIndex(0);
-      renderTabContent(0);
-    } else {
-      setCurrentIndex(newTabIndex);
-      renderTabContent(newTabIndex);
-    }
-  };
-
-  const renderTabs: HandleRenderTabsFn = (
-    tabData,
+const Tablist: React.FC<TabListType> = ({
+  tabData,
+  tabListClasses = undefined,
+}) => {
+  const {
     currentIndex,
-    handleClick
-  ) => {
-    return tabData.map((tab, index) => {
-      const { title } = tab;
-      return (
-        <TabItem
-          index={index}
-          currentIndex={currentIndex}
-          handleClick={handleClick}
-          title={title}
-          key={index}
-        />
-      );
-    });
-  };
+    handleClick,
+    setTabListAttributes,
+    setTabListItemAttributes,
+    setTabListLinkAttributes,
+    setTabPanelAttributes,
+  } = useTabs(tabData);
 
-  const renderTabContent = (currentIndex: number) => {
-    const currentContent = tabData[currentIndex].content;
-    return <TabPanel content={currentContent} />;
-  };
+  const renderTabs: HandleRenderTabsFn = useCallback(
+    (tabData, currentIndex, handleClick) => {
+      return tabData.map((tab, index) => {
+        const { title } = tab;
+        return (
+          <TabItem
+            index={index}
+            currentIndex={currentIndex}
+            handleClick={handleClick}
+            tabListItemAttributes={setTabListItemAttributes}
+            tabListLinkAttributes={setTabListLinkAttributes}
+            title={title}
+            key={`cd-tablist-${index}`}
+          />
+        );
+      });
+    },
+    [tabData, currentIndex, handleClick]
+  );
+
+  const renderTabContent = useCallback(
+    (currentIndex: number) => {
+      const currentContent = tabData[currentIndex].content;
+      return <TabPanel content={currentContent} />;
+    },
+    [currentIndex]
+  );
 
   return (
-    <>
-      <ul role="tablist" className="cd-component__tablist">
+    <div className={tabListClasses}>
+      <ul {...setTabListAttributes()}>
         {renderTabs(tabData, currentIndex, handleClick)}
       </ul>
-      <div aria-labelledby="tab-link-1" id="tab-1" role="tabpanel" tabIndex={0}>
-        {renderTabContent(currentIndex)}
-      </div>
-    </>
+      <div {...setTabPanelAttributes()}>{renderTabContent(currentIndex)}</div>
+    </div>
   );
 };
 

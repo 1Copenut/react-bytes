@@ -1,5 +1,7 @@
 import { ReactElement, ReactNode } from "react";
 
+import { TabListItemAttributes, TabListLinkAttributes } from "./HelperTypes";
+
 interface TabDataType {
   title: string;
   content: string | ReactNode;
@@ -9,6 +11,13 @@ type TabItemType = Pick<TabDataType, "title"> & {
   index: number;
   currentIndex: number;
   handleClick: HandleEventFn;
+  tabListItemAttributes: () => TabListItemAttributes;
+  tabListLinkAttributes: (index: number) => TabListLinkAttributes;
+};
+
+type TabListType = {
+  tabData: TabDataType[];
+  tabListClasses?: string;
 };
 
 type TabPanelType = Pick<TabDataType, "content">;
@@ -25,6 +34,7 @@ type HandleRenderTabsFn = (
 export type {
   TabDataType,
   TabItemType,
+  TabListType,
   TabPanelType,
   HandleEventFn,
   HandleRenderTabsFn,

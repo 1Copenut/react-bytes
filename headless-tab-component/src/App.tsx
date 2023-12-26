@@ -1,4 +1,5 @@
 import "./App.css";
+
 import Tablist from "./Components/Tabs/Tablist";
 import { TabDataType } from "./Components/Tabs/types/TabTypes";
 
