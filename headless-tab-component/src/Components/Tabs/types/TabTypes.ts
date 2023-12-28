@@ -1,10 +1,6 @@
 import { ReactElement, ReactNode } from "react";
 
-import {
-  TabListItemAttributes,
-  TabListLinkAttributes,
-  TabPanelAttributes,
-} from "./HelperTypes";
+import { TabListItemAttributes, TabListLinkAttributes } from "./HelperTypes";
 
 interface TabDataType {
   title: string;
@@ -32,9 +28,7 @@ type TabItemType = Pick<TabDataType, "title"> & {
   ) => TabListLinkAttributes;
 };
 
-type TabPanelType = Pick<TabDataType, "content"> & {
-  tabPanelAttributes: () => TabPanelAttributes;
-};
+type TabPanelType = Pick<TabDataType, "content"> & Pick<TabListType, "tabData">;
 
 // TODO: Move to helper types!
 type HandleEventFn = (e: React.SyntheticEvent) => void;
