@@ -9,7 +9,7 @@ interface TabDataType {
 
 type TabListType = {
   tabData: TabDataType[];
-  tabListClasses?: string;
+  tabClasses?: string;
 };
 
 type TabItemsType = Pick<TabListType, "tabData"> & {

@@ -31,7 +31,7 @@ const App = () => {
     <main>
       <h1>Headless tabbed component</h1>
       <div>
-        <Tablist tabData={tabData} />
+        <Tablist tabData={tabData} tabClasses="test-class" />
       </div>
     </main>
   );
