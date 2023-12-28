@@ -2,8 +2,9 @@ import { TabItemType } from "./types/TabTypes";
 
 const TabItem: React.FC<TabItemType> = ({
   title,
+  currentIndex,
   index,
-  handleClick,
+  handleTabClick,
   tabListItemAttributes,
   tabListLinkAttributes,
 }) => {
@@ -11,7 +12,10 @@ const TabItem: React.FC<TabItemType> = ({
 
   return (
     <Component {...tabListItemAttributes()}>
-      <a onClick={handleClick} {...tabListLinkAttributes(index)}>
+      <a
+        {...tabListLinkAttributes(index, currentIndex)}
+        onClick={handleTabClick}
+      >
         {title}
       </a>
     </Component>

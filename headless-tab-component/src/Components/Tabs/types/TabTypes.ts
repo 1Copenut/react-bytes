@@ -11,17 +11,25 @@ interface TabDataType {
   content: string | ReactNode;
 }
 
-type TabItemType = Pick<TabDataType, "title"> & {
-  index: number;
-  currentIndex: number;
-  handleClick: HandleEventFn;
-  tabListItemAttributes: () => TabListItemAttributes;
-  tabListLinkAttributes: (index: number) => TabListLinkAttributes;
-};
-
 type TabListType = {
   tabData: TabDataType[];
   tabListClasses?: string;
+};
+
+type TabItemsType = Pick<TabListType, "tabData"> & {
+  currentIndex: number;
+  handleTabClick: HandleEventFn;
+};
+
+type TabItemType = Pick<TabDataType, "title"> & {
+  index: number;
+  currentIndex: number;
+  handleTabClick: HandleEventFn;
+  tabListItemAttributes: () => TabListItemAttributes;
+  tabListLinkAttributes: (
+    index: number,
+    currentIndex: number
+  ) => TabListLinkAttributes;
 };
 
 type TabPanelType = Pick<TabDataType, "content"> & {
@@ -34,12 +42,13 @@ type HandleEventFn = (e: React.SyntheticEvent) => void;
 type HandleRenderTabsFn = (
   tabData: TabDataType[],
   currentIndex: number,
-  handleClick: HandleEventFn
+  handleTabClick: HandleEventFn
 ) => ReactElement[];
 
 export type {
   TabDataType,
   TabItemType,
+  TabItemsType,
   TabListType,
   TabPanelType,
   HandleEventFn,
