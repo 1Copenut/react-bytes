@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { TabDataType, HandleEventFn } from "../types/TabTypes";
 import {
@@ -10,8 +10,9 @@ import {
 
 const useTabs = (tabData: TabDataType[]) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [currentContent, setCurrentContent] = useState(tabData[0].content);
 
-  const handleClick: HandleEventFn = (e) => {
+  const handleTabClick: HandleEventFn = (e) => {
     e.preventDefault();
     let target = e.target as HTMLElement;
 
@@ -21,12 +22,21 @@ const useTabs = (tabData: TabDataType[]) => {
     if (newTabIndex === -1) {
       // Something went wrong, so fall back to the first tab. Should never happen.
       setCurrentIndex(0);
+      renderTabContent(0);
     } else {
       setCurrentIndex(newTabIndex);
+      renderTabContent(newTabIndex);
     }
   };
 
   // TODO: handleKeypress() logic
+
+  const renderTabContent = useCallback(
+    (currentIndex: number) => {
+      setCurrentContent(tabData[currentIndex].content);
+    },
+    [currentIndex]
+  );
 
   const setTabListAttributes = (): TabListAttributes => ({
     className: "cd-component__tablist",
@@ -56,8 +66,9 @@ const useTabs = (tabData: TabDataType[]) => {
   });
 
   return {
+    currentContent,
     currentIndex,
-    handleClick,
+    handleTabClick,
     setTabListAttributes,
     setTabListItemAttributes,
     setTabListLinkAttributes,

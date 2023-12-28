@@ -7,12 +7,14 @@ const TabItem: React.FC<TabItemType> = ({
   tabListItemAttributes,
   tabListLinkAttributes,
 }) => {
+  const Component = "li";
+
   return (
-    <li {...tabListItemAttributes()}>
+    <Component {...tabListItemAttributes()}>
       <a onClick={handleClick} {...tabListLinkAttributes(index)}>
         {title}
       </a>
-    </li>
+    </Component>
   );
 };
 
