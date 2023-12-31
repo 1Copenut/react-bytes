@@ -1,6 +1,11 @@
 import { ReactElement, ReactNode } from "react";
 
-import { TabListItemAttributes, TabListLinkAttributes } from "./HelperTypes";
+import {
+  TabListAttributes,
+  TabListItemAttributes,
+  TabListLinkAttributes,
+  TabPanelAttributes,
+} from "./HelperTypes";
 
 interface TabDataType {
   title: string;
@@ -12,9 +17,14 @@ type TabListType = {
   tabClasses?: string;
 };
 
-type TabItemsType = Pick<TabListType, "tabData"> & {
-  currentIndex: number;
+type TabItemsType = {
   handleTabClick: HandleEventFn;
+  tabListAttributes: () => TabListAttributes;
+  tabListItemAttributes: () => TabListItemAttributes;
+  tabListLinkAttributes: (
+    index: number,
+    currentIndex: number
+  ) => TabListLinkAttributes;
 };
 
 type TabItemType = Pick<TabDataType, "title"> & {
@@ -28,7 +38,15 @@ type TabItemType = Pick<TabDataType, "title"> & {
   ) => TabListLinkAttributes;
 };
 
-type TabPanelType = Pick<TabDataType, "content"> & Pick<TabListType, "tabData">;
+type TabPanelType = {
+  tabPanelAttributes: () => TabPanelAttributes;
+};
+
+type TabContextType = {
+  currentContent: string | ReactNode;
+  currentIndex: number;
+  tabData: TabDataType[];
+};
 
 // TODO: Move to helper types!
 type HandleEventFn = (e: React.SyntheticEvent) => void;
@@ -45,6 +63,7 @@ export type {
   TabItemsType,
   TabListType,
   TabPanelType,
+  TabContextType,
   HandleEventFn,
   HandleRenderTabsFn,
 };

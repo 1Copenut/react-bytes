@@ -1,11 +1,13 @@
-import useTabs from "./hooks/useTabs";
+import { useContext } from "react";
+
+import { TabsContext } from "./context/TabsContext";
 import { TabPanelType } from "./types/TabTypes";
 
-const TabPanel: React.FC<TabPanelType> = ({ tabData, content }) => {
+const TabPanel: React.FC<TabPanelType> = ({ tabPanelAttributes }) => {
   const Component = "div";
-  const { setTabPanelAttributes } = useTabs(tabData);
+  const { currentContent } = useContext(TabsContext);
 
-  return <Component {...setTabPanelAttributes()}>{content}</Component>;
+  return <Component {...tabPanelAttributes()}>{currentContent}</Component>;
 };
 
 export default TabPanel;
