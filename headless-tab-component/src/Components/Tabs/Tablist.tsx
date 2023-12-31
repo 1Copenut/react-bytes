@@ -1,6 +1,7 @@
 import TabItems from "./TabItems";
 import TabPanel from "./TabPanel";
 import useTabs from "./hooks/useTabs";
+import { TabsContext } from "./context/TabsContext";
 import { TabListType } from "./types/TabTypes";
 
 import styles from "./Tabs.module.css";
@@ -23,20 +24,17 @@ const Tablist: React.FC<TabListType> = ({
   } = useTabs(tabData);
 
   return (
-    <div className={allTabClasses}>
-      <TabItems
-        tabData={tabData}
-        currentIndex={currentIndex}
-        handleTabClick={handleTabClick}
-        tabListAttributes={setTabListAttributes}
-        tabListItemAttributes={setTabListItemAttributes}
-        tabListLinkAttributes={setTabListLinkAttributes}
-      />
-      <TabPanel
-        content={currentContent}
-        tabPanelAttributes={setTabPanelAttributes}
-      />
-    </div>
+    <TabsContext.Provider value={{ currentContent, currentIndex, tabData }}>
+      <div className={allTabClasses}>
+        <TabItems
+          handleTabClick={handleTabClick}
+          tabListAttributes={setTabListAttributes}
+          tabListItemAttributes={setTabListItemAttributes}
+          tabListLinkAttributes={setTabListLinkAttributes}
+        />
+        <TabPanel tabPanelAttributes={setTabPanelAttributes} />
+      </div>
+    </TabsContext.Provider>
   );
 };
 

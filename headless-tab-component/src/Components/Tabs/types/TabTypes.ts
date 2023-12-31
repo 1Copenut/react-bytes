@@ -17,8 +17,7 @@ type TabListType = {
   tabClasses?: string;
 };
 
-type TabItemsType = Pick<TabListType, "tabData"> & {
-  currentIndex: number;
+type TabItemsType = {
   handleTabClick: HandleEventFn;
   tabListAttributes: () => TabListAttributes;
   tabListItemAttributes: () => TabListItemAttributes;
@@ -39,8 +38,14 @@ type TabItemType = Pick<TabDataType, "title"> & {
   ) => TabListLinkAttributes;
 };
 
-type TabPanelType = Pick<TabDataType, "content"> & {
+type TabPanelType = {
   tabPanelAttributes: () => TabPanelAttributes;
+};
+
+type TabContextType = {
+  currentContent: string | ReactNode;
+  currentIndex: number;
+  tabData: TabDataType[];
 };
 
 // TODO: Move to helper types!
@@ -58,6 +63,7 @@ export type {
   TabItemsType,
   TabListType,
   TabPanelType,
+  TabContextType,
   HandleEventFn,
   HandleRenderTabsFn,
 };
