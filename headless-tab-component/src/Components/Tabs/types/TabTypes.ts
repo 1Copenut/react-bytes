@@ -48,6 +48,15 @@ type TabContextType = {
   tabData: TabDataType[];
 };
 
+type TabContextProviderType = {
+  children: ReactElement;
+  value: {
+    currentContent: string | ReactNode;
+    currentIndex: number;
+    tabData: TabDataType[];
+  };
+};
+
 // TODO: Move to helper types!
 type HandleEventFn = (e: React.SyntheticEvent) => void;
 
@@ -64,6 +73,7 @@ export type {
   TabListType,
   TabPanelType,
   TabContextType,
+  TabContextProviderType,
   HandleEventFn,
   HandleRenderTabsFn,
 };

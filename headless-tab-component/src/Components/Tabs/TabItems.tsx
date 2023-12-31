@@ -1,7 +1,7 @@
-import { useCallback, useContext } from "react";
+import { useCallback } from "react";
 
 import TabItem from "./TabItem";
-import { TabsContext } from "./context/TabsContext";
+import { useTabsContext } from "./context/TabsContextProvider";
 import { TabItemsType, HandleRenderTabsFn } from "./types/TabTypes";
 
 const TabItems: React.FC<TabItemsType> = ({
@@ -11,7 +11,7 @@ const TabItems: React.FC<TabItemsType> = ({
   tabListLinkAttributes,
 }) => {
   const Component = "ul";
-  const { currentIndex, tabData } = useContext(TabsContext);
+  const { currentIndex, tabData } = useTabsContext();
 
   const renderTabs: HandleRenderTabsFn = useCallback(
     (tabData, currentIndex, handleTabClick) => {
