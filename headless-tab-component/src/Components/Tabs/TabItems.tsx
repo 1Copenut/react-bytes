@@ -2,19 +2,16 @@ import { useCallback } from "react";
 
 import TabItem from "./TabItem";
 import { TabItemsType, HandleRenderTabsFn } from "./types/TabTypes";
-import useTabs from "./hooks/useTabs";
 
 const TabItems: React.FC<TabItemsType> = ({
   tabData,
   currentIndex,
   handleTabClick,
+  tabListAttributes,
+  tabListItemAttributes,
+  tabListLinkAttributes,
 }) => {
   const Component = "ul";
-  const {
-    setTabListAttributes,
-    setTabListItemAttributes,
-    setTabListLinkAttributes,
-  } = useTabs(tabData);
 
   const renderTabs: HandleRenderTabsFn = useCallback(
     (tabData, currentIndex, handleTabClick) => {
@@ -26,8 +23,8 @@ const TabItems: React.FC<TabItemsType> = ({
             index={index}
             currentIndex={currentIndex}
             handleTabClick={handleTabClick}
-            tabListItemAttributes={setTabListItemAttributes}
-            tabListLinkAttributes={setTabListLinkAttributes}
+            tabListItemAttributes={tabListItemAttributes}
+            tabListLinkAttributes={tabListLinkAttributes}
             title={title}
             key={`cd-tablist-${index}`}
           />
@@ -38,7 +35,7 @@ const TabItems: React.FC<TabItemsType> = ({
   );
 
   return (
-    <Component {...setTabListAttributes()}>
+    <Component {...tabListAttributes()}>
       {renderTabs(tabData, currentIndex, handleTabClick)}
     </Component>
   );

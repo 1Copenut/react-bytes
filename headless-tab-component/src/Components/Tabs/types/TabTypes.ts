@@ -1,6 +1,7 @@
 import { ReactElement, ReactNode } from "react";
 
 import {
+  TabListAttributes,
   TabListItemAttributes,
   TabListLinkAttributes,
   TabPanelAttributes,
@@ -19,6 +20,12 @@ type TabListType = {
 type TabItemsType = Pick<TabListType, "tabData"> & {
   currentIndex: number;
   handleTabClick: HandleEventFn;
+  tabListAttributes: () => TabListAttributes;
+  tabListItemAttributes: () => TabListItemAttributes;
+  tabListLinkAttributes: (
+    index: number,
+    currentIndex: number
+  ) => TabListLinkAttributes;
 };
 
 type TabItemType = Pick<TabDataType, "title"> & {

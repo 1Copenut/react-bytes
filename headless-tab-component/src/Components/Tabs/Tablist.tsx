@@ -16,6 +16,9 @@ const Tablist: React.FC<TabListType> = ({
     currentContent,
     currentIndex,
     handleTabClick,
+    setTabListAttributes,
+    setTabListItemAttributes,
+    setTabListLinkAttributes,
     setTabPanelAttributes,
   } = useTabs(tabData);
 
@@ -25,6 +28,9 @@ const Tablist: React.FC<TabListType> = ({
         tabData={tabData}
         currentIndex={currentIndex}
         handleTabClick={handleTabClick}
+        tabListAttributes={setTabListAttributes}
+        tabListItemAttributes={setTabListItemAttributes}
+        tabListLinkAttributes={setTabListLinkAttributes}
       />
       <TabPanel
         content={currentContent}
