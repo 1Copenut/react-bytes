@@ -12,7 +12,12 @@ const Tablist: React.FC<TabListType> = ({
   const allTabClasses = tabClasses
     ? `${styles.cd_component__tabs} ${tabClasses}`
     : `${styles.cd_component__tabs}`;
-  const { currentContent, currentIndex, handleTabClick } = useTabs(tabData);
+  const {
+    currentContent,
+    currentIndex,
+    handleTabClick,
+    setTabPanelAttributes,
+  } = useTabs(tabData);
 
   return (
     <div className={allTabClasses}>
@@ -21,7 +26,10 @@ const Tablist: React.FC<TabListType> = ({
         currentIndex={currentIndex}
         handleTabClick={handleTabClick}
       />
-      <TabPanel tabData={tabData} content={currentContent} />
+      <TabPanel
+        content={currentContent}
+        tabPanelAttributes={setTabPanelAttributes}
+      />
     </div>
   );
 };
